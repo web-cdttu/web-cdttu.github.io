@@ -1,0 +1,73 @@
+{
+  "configVersion": 1,
+  "timestamp": 1684671551084,
+  "index": "https://web-cdttu.github.io/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://web-cdttu.github.io/favicon.ico",
+        "https://web-cdttu.github.io/index.html",
+        "https://web-cdttu.github.io/main.0e032f70e2b29c28.js",
+        "https://web-cdttu.github.io/manifest.webmanifest",
+        "https://web-cdttu.github.io/polyfills.af52e9ba23976ee5.js",
+        "https://web-cdttu.github.io/runtime.eab2524573a530c9.js",
+        "https://web-cdttu.github.io/styles.ef46db3751d8e999.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://web-cdttu.github.io/assets/icons/icon-192x192.png",
+        "https://web-cdttu.github.io/assets/icons/icon-256x256.png",
+        "https://web-cdttu.github.io/assets/icons/icon-384x384.png",
+        "https://web-cdttu.github.io/assets/icons/icon-512x512.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "https://web-cdttu.github.io/assets/icons/icon-192x192.png": "6c28d04e8c85897db44353d12deef1035edbba6e",
+    "https://web-cdttu.github.io/assets/icons/icon-256x256.png": "bc7ccf676e025fc6c353b3d2c2ec6d06a6eed3be",
+    "https://web-cdttu.github.io/assets/icons/icon-384x384.png": "dac524faf2b05ec8f9309931f7194fb5f97e06f6",
+    "https://web-cdttu.github.io/assets/icons/icon-512x512.png": "946081eea5b25aec0e6942d07091664904529ac1",
+    "https://web-cdttu.github.io/favicon.ico": "b125295a96e45af33b6a7f4169425b51d992c5f6",
+    "https://web-cdttu.github.io/index.html": "d834d7b69869be8309e12e6a648a04252bc5225b",
+    "https://web-cdttu.github.io/main.0e032f70e2b29c28.js": "95c1a1517c15d723baa6ea1cf9409e6693848ab2",
+    "https://web-cdttu.github.io/manifest.webmanifest": "bb68ecdf0c0c920963b856ba107081a50f5ee4c7",
+    "https://web-cdttu.github.io/polyfills.af52e9ba23976ee5.js": "cf633d91f57ebed0c1177f183e289cee3603245a",
+    "https://web-cdttu.github.io/runtime.eab2524573a530c9.js": "d1fccba26a1fa2dc7569af2f1b4d76b9b7a02eab",
+    "https://web-cdttu.github.io/styles.ef46db3751d8e999.css": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
