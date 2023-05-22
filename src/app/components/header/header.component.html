@@ -1,0 +1,42 @@
+<div class="header h-[70px] lg:h-[150px]">
+  <div class="container h-full">
+    <div class="h-full flex justify-between items-center">
+      <a href="/" class="logo flex items-center">
+        <img src="favicon.ico" alt="CDTTU" class="h-[45px] lg:h-[70px]" />
+        <div class="ml-3.5 hidden lg:block">
+          <div class="text-xl font-bold">HỌC VIÊN CAO ĐÀI TIÊN THIÊN</div>
+          <div>GIAO CÁC HỘI THÁNH & TỔ CHỨC CAO ĐÀI</div>
+        </div>
+      </a>
+      <input
+        type="search"
+        class="hidden lg:block rounded-full text-lg border px-4 py-2 outline-none"
+        placeholder="Tìm kiếm"
+      />
+    </div>
+  </div>
+</div>
+<div class="navbar bg-primary sticky top-0">
+  <div class="container">
+    <ul class="flex justify-around">
+      <li class="w-full text-center relative navbar-item" *ngFor="let item of navbar, let index = index">
+        <a
+          [routerLink]="item?.path"
+          [routerLinkActive]="'active'"
+          class="text-white py-3 w-full block"
+          >{{ item?.label }}</a
+        >
+        <ul *ngIf="item?.children?.length > 0" class="children bg-primary absolute top-full left-0 w-full">
+          <li *ngFor="let child of item.children">
+            <a
+              [routerLink]="item?.path + '/' + child?.path"
+              [routerLinkActive]="'active'"
+              class="text-white py-3 w-full block"
+              >{{ child?.label }}</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

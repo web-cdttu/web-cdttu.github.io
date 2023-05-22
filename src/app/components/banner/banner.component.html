@@ -1,0 +1,55 @@
+<div class="banner w-full h-[60vh]">
+  <swiper
+    #swiper
+    [virtual]="true"
+    class="h-full w-full"
+    [loop]="true"
+    [autoplay]="{ delay: 2000 }"
+  >
+    <ng-template swiperSlide *ngFor="let item of banner">
+      <div class="h-full w-full">
+        <img
+          [src]="item?.image"
+          [alt]="item?.image"
+          class="h-full w-full object-cover"
+        />
+      </div>
+    </ng-template>
+  </swiper>
+  <button
+    class="h-[50px] w-[50px] rounded-full p-3 bg-[white] text-center absolute top-1/2 right-3 z-10"
+    (click)="slideNext()"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M8.25 4.5l7.5 7.5-7.5 7.5"
+      />
+    </svg>
+  </button>
+  <button
+    class="h-[50px] w-[50px] rounded-full p-3 bg-[white] text-center absolute top-1/2 left-3 z-10"
+    (click)="slidePrev()"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M15.75 19.5L8.25 12l7.5-7.5"
+      />
+    </svg>
+  </button>
+</div>
