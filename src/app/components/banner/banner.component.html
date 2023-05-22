@@ -21,6 +21,7 @@
   <button
     class="h-[50px] w-[50px] rounded-full p-3 bg-[white] text-center absolute top-1/2 right-3 z-10"
     (click)="slideNext()"
+    [ariaLabel]="'slideNext'"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -39,6 +40,7 @@
   <button
     class="h-[50px] w-[50px] rounded-full p-3 bg-[white] text-center absolute top-1/2 left-3 z-10"
     (click)="slidePrev()"
+    [ariaLabel]="'slidePrev'"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"

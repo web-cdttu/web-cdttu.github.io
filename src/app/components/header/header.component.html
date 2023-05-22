@@ -4,6 +4,7 @@
       <button
         class="rounded block lg:hidden"
         (click)="isShowMenu = !isShowMenu"
+        [ariaLabel]="'toggleMenu'"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -50,13 +51,14 @@
           <a
             [routerLink]="item?.path"
             [routerLinkActive]="'active'"
-            class="text-white py-3 w-full block"
+            class="text-black py-3 w-full block"
             >{{ item?.label }}</a
           >
           <button
             class="block lg:hidden h-6 w-6 text-white mx-2"
             *ngIf="item?.children?.length > 0"
             (click)="item.show = !item.show"
+            [ariaLabel]="'toggleMenu'"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +84,7 @@
             <a
               [routerLink]="item?.path + '/' + child?.path"
               [routerLinkActive]="'active'"
-              class="text-white py-3 w-full block"
+              class="text-black py-3 w-full block"
               >{{ child?.label }}</a
             >
           </li>
@@ -110,13 +112,14 @@
             [routerLink]="item?.path"
             [routerLinkActive]="'active'"
             (click)="isShowMenu = false; item.show = false"
-            class="text-white py-3 w-full block px-3 text-left"
+            class="text-black py-3 w-full block px-3 text-left"
             >{{ item?.label }}</a
           >
           <button
             class="block lg:hidden h-6 w-6 text-white mx-2"
             *ngIf="item?.children?.length > 0"
             (click)="item.show = !item.show"
+            [ariaLabel]="'toggleMenu'"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +151,7 @@
             <a
               [routerLink]="item?.path + '/' + child?.path"
               [routerLinkActive]="'active'"
-              class="text-white py-3 w-full block"
+              class="text-black py-3 w-full block"
               (click)="isShowMenu = false; item.show = false"
               >{{ child?.label }}</a
             >
