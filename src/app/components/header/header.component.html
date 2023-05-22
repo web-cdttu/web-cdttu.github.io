@@ -1,6 +1,25 @@
-<div class="header h-[70px] lg:h-[150px]">
+<div class="header h-[70px] lg:h-[150px] sticky top-0 z-[99]">
   <div class="container h-full">
     <div class="h-full flex justify-between items-center">
+      <button
+        class="rounded block lg:hidden"
+        (click)="isShowMenu = !isShowMenu"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-[24px] h-[24px]"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+          />
+        </svg>
+      </button>
       <a href="/" class="logo flex items-center">
         <img src="favicon.ico" alt="CDTTU" class="h-[45px] lg:h-[70px]" />
         <div class="ml-3.5 hidden lg:block">
@@ -16,22 +35,121 @@
     </div>
   </div>
 </div>
-<div class="navbar bg-primary sticky top-0">
-  <div class="container">
-    <ul class="flex justify-around">
-      <li class="w-full text-center relative navbar-item" *ngFor="let item of navbar, let index = index">
-        <a
-          [routerLink]="item?.path"
-          [routerLinkActive]="'active'"
-          class="text-white py-3 w-full block"
-          >{{ item?.label }}</a
+<div class="navbar bg-primary sticky top-0 z-50 hidden lg:block">
+  <div class="container px-0 lg:px-[1rem]">
+    <ul class="block lg:flex justify-around">
+      <li
+        class="w-full text-center relative navbar-item"
+        *ngFor="let item of navbar; let index = index"
+        [ngClass]="{ border: item.show }"
+      >
+        <div
+          class="flex justify-between items-center"
+          [ngClass]="{ border: item.show }"
         >
-        <ul *ngIf="item?.children?.length > 0" class="children bg-primary absolute top-full left-0 w-full">
+          <a
+            [routerLink]="item?.path"
+            [routerLinkActive]="'active'"
+            class="text-white py-3 w-full block"
+            >{{ item?.label }}</a
+          >
+          <button
+            class="block lg:hidden h-6 w-6 text-white mx-2"
+            *ngIf="item?.children?.length > 0"
+            (click)="item.show = !item.show"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="{1.5}"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          </button>
+        </div>
+        <ul
+          *ngIf="item?.children?.length > 0"
+          class="children bg-primary relative lg:absolute top-full left-0 w-full hidden lg:block"
+        >
           <li *ngFor="let child of item.children">
             <a
               [routerLink]="item?.path + '/' + child?.path"
               [routerLinkActive]="'active'"
               class="text-white py-3 w-full block"
+              >{{ child?.label }}</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+<div
+  class="navbar bg-primary sticky top-0 z-50 block lg:hidden"
+  *ngIf="isShowMenu"
+>
+  <div class="container px-0 lg:px-[1rem]">
+    <ul class="block lg:flex justify-around">
+      <li
+        class="w-full text-center relative navbar-item"
+        *ngFor="let item of navbar; let index = index"
+        [ngClass]="{ border: item.show }"
+      >
+        <div
+          class="flex justify-between items-center"
+          [ngClass]="{ border: item.show }"
+        >
+          <a
+            [routerLink]="item?.path"
+            [routerLinkActive]="'active'"
+            (click)="isShowMenu = false; item.show = false"
+            class="text-white py-3 w-full block px-3 text-left"
+            >{{ item?.label }}</a
+          >
+          <button
+            class="block lg:hidden h-6 w-6 text-white mx-2"
+            *ngIf="item?.children?.length > 0"
+            (click)="item.show = !item.show"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="{1.5}"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          </button>
+        </div>
+        <ul
+          *ngIf="item?.children?.length > 0"
+          class="children bg-primary relative lg:absolute top-full left-0 w-full block lg:hidden"
+          [ngClass]="{
+            'h-full lg:h-auto': item.show,
+            'h-0 lg:h-auto': !item.show,
+            'hidden lg:visited': !item.show,
+            'visited lg:visited': item.show
+          }"
+        >
+          <li *ngFor="let child of item.children">
+            <a
+              [routerLink]="item?.path + '/' + child?.path"
+              [routerLinkActive]="'active'"
+              class="text-white py-3 w-full block"
+              (click)="isShowMenu = false; item.show = false"
               >{{ child?.label }}</a
             >
           </li>

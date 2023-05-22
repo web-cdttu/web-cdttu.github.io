@@ -23,7 +23,8 @@
   }
   a {
     transition: all 0.5s;
-    &.active, &:hover {
+    &.active,
+    &:hover {
       background-color: #fbbc05;
     }
   }
