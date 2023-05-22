@@ -1,4 +1,7 @@
-<div class="banner w-full h-[80vh] lg:h-[60vh] relative">
+<div
+  class="banner w-full h-[80vh] lg:h-[60vh] relative"
+  *ngIf="banner?.length > 0"
+>
   <swiper
     #swiper
     class="h-full w-full"
