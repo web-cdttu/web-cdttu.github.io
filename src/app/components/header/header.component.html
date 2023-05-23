@@ -1,4 +1,6 @@
-<div class="header h-[70px] lg:h-[150px] sticky top-0 z-[99]">
+<div
+  class="header h-[70px] lg:h-[150px] sticky lg:static top-0 z-[99] lg:z-auto"
+>
   <div class="container h-full">
     <div class="h-full flex justify-between items-center">
       <button
@@ -23,16 +25,67 @@
       </button>
       <a href="/" class="logo flex items-center">
         <img src="favicon.ico" alt="CDTTU" class="h-[45px] lg:h-[70px]" />
-        <div class="ml-3.5 hidden lg:block">
-          <div class="text-xl font-bold">HỌC VIÊN CAO ĐÀI TIÊN THIÊN</div>
+        <div class="ml-3.5 hidden lg:block font-semibold">
           <div>LIÊN GIAO CÁC HỘI THÁNH & TỔ CHỨC CAO ĐÀI</div>
+          <div>HỌC VIÊN CAO ĐÀI TIÊN THIÊN</div>
         </div>
       </a>
-      <input
-        type="search"
-        class="hidden lg:block rounded-full text-lg border px-5 py-2 outline-none border-[#4285f4]"
-        placeholder="Tìm kiếm"
-      />
+      <div class="flex items-center">
+        <div
+          *ngIf="activePath !== '/tim-kiem'"
+          class="hidden lg:flex items-center rounded-full text-lg border border-[#4285f4] overflow-hidden bg-[white]"
+        >
+          <input
+            type="search"
+            placeholder="Tìm kiếm"
+            class="w-full px-5 py-2 outline-none"
+            [(ngModel)]="searchText"
+            (keyup.enter)="search()"
+          />
+          <button (click)="search()" class="p-2" [ariaLabel]="'search'">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="dropdown-menu relative z-[9999]">
+          <button
+            #accountMenuTrigger
+            [ariaLabel]="'account'"
+            class="h-10 w-10 bg-[white] rounded-full ml-3 border flex justify-center items-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+              />
+            </svg>
+          </button>
+          <div class="absolute right-0 bg-[white] rounded drop-shadow" *ngIf="isShowAccountMenu">
+            <div class="block py-3 px-5 whitespace-nowrap cursor-pointer hover:bg-[#fabb05]">Nhân viên</div>
+            <div class="block py-3 px-5 whitespace-nowrap cursor-pointer hover:bg-[#fabb05]">Học viên</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -40,20 +93,18 @@
   <div class="container px-0 lg:px-[1rem]">
     <ul class="block lg:flex justify-around">
       <li
-        class="w-full text-center relative navbar-item"
+        class="w-full text-center relative navbar-item cursor-pointer"
         *ngFor="let item of navbar; let index = index"
-        [ngClass]="{ border: item.show }"
+        [ngClass]="{ border: item.show, active: activePath === item?.path }"
+        [routerLink]="item?.path"
       >
         <div
           class="flex justify-between items-center"
           [ngClass]="{ border: item.show }"
         >
-          <a
-            [routerLink]="item?.path"
-            [routerLinkActive]="'active'"
-            class="text-black py-3 w-full block"
-            >{{ item?.label }}</a
-          >
+          <a class="text-black py-3 w-full block font-semibold">{{
+            item?.label
+          }}</a>
           <button
             class="block lg:hidden h-6 w-6 text-white mx-2"
             *ngIf="item?.children?.length > 0"
@@ -80,13 +131,14 @@
           *ngIf="item?.children?.length > 0"
           class="children bg-primary relative lg:absolute top-full left-0 w-full hidden lg:block"
         >
-          <li *ngFor="let child of item.children">
-            <a
-              [routerLink]="item?.path + '/' + child?.path"
-              [routerLinkActive]="'active'"
-              class="text-black py-3 w-full block"
-              >{{ child?.label }}</a
-            >
+          <li
+            *ngFor="let child of item.children"
+            [routerLink]="item?.path + '/' + child?.path"
+            [routerLinkActive]="'active'"
+          >
+            <a class="text-black py-3 w-full block font-semibold">{{
+              child?.label
+            }}</a>
           </li>
         </ul>
       </li>
@@ -94,7 +146,7 @@
   </div>
 </div>
 <div
-  class="navbar bg-primary sticky top-0 z-50 block lg:hidden"
+  class="navbar bg-primary sticky top-0 z-[9999] block lg:hidden pb-3"
   *ngIf="isShowMenu"
 >
   <div class="container px-0 lg:px-[1rem]">
@@ -102,7 +154,7 @@
       <li
         class="w-full text-center relative navbar-item"
         *ngFor="let item of navbar; let index = index"
-        [ngClass]="{ border: item.show }"
+        [ngClass]="{ border: item.show, active: activePath === item?.path }"
       >
         <div
           class="flex justify-between items-center"
@@ -110,9 +162,8 @@
         >
           <a
             [routerLink]="item?.path"
-            [routerLinkActive]="'active'"
             (click)="isShowMenu = false; item.show = false"
-            class="text-black py-3 w-full block px-3 text-left"
+            class="text-black py-3 w-full block px-3 text-left font-semibold"
             >{{ item?.label }}</a
           >
           <button
@@ -151,7 +202,7 @@
             <a
               [routerLink]="item?.path + '/' + child?.path"
               [routerLinkActive]="'active'"
-              class="text-black py-3 w-full block"
+              class="text-black py-3 w-full block font-semibold"
               (click)="isShowMenu = false; item.show = false"
               >{{ child?.label }}</a
             >
@@ -159,10 +210,33 @@
         </ul>
       </li>
     </ul>
-    <input
-      type="search"
-      class="w-full rounded-full text-lg border px-5 py-2 outline-none border-[#4285f4] mb-4"
-      placeholder="Tìm kiếm"
-    />
+    <div
+      *ngIf="activePath !== '/tim-kiem'"
+      class="flex lg:hidden items-center rounded-full text-lg border border-[#4285f4] overflow-hidden bg-[white]"
+    >
+      <input
+        type="search"
+        placeholder="Tìm kiếm"
+        class="w-full px-5 py-2 outline-none"
+        [(ngModel)]="searchText"
+        (keyup.enter)="search()"
+      />
+      <button (click)="search()" class="p-2" [ariaLabel]="'search'">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+          />
+        </svg>
+      </button>
+    </div>
   </div>
 </div>

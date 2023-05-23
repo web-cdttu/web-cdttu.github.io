@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { MENU } from 'src/app/shared/constant/menu.constant';
 
 @Component({
   selector: 'app-header',
@@ -7,98 +9,39 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   isShowMenu = false;
-  navbar = <any>[
-    {
-      path: '.',
-      label: 'TRANG CHỦ'
-    },
-    {
-      path: 'tin-tuc',
-      label: 'TIN TỨC',
-      children: [
-        {
-          path: '',
-          label: 'TIN TỨC',
-        },
-        {
-          path: 'su-kien',
-          label: 'SỰ KIỆN',
-        }
-      ]
-    },
-    {
-      path: 'thong-bao',
-      label: 'THÔNG BÁO',
-      children: [
-        {
-          path: 'bac-tu-si',
-          label: 'BẬC TU SĨ',
-        },
-        {
-          path: 'bac-chuc-viec',
-          label: 'BẬC CHỨC VIỆC',
-        },
-        {
-          path: 'bac-chuc-sac-khoa-muc',
-          label: 'BẬC CHỨC SẮC KHOA MỤC',
-        },
-        {
-          path: 'thong-bao-giang-vien',
-          label: 'THÔNG BÁO GIẢNG VIÊN',
-        }
-      ]
-    },
-    {
-      path: 'gioi-thieu',
-      label: 'GIỚI THIỆU',
-      children: [
-        {
-          path: 'luoc-su',
-          label: 'LƯỢC SỬ',
-        },
-        {
-          path: 'chuc-nang-nhiem-vu',
-          label: 'CHỨC NĂNG NHIỆM VỤ',
-        },
-        {
-          path: 'cac-phong-ban-chuc-nang',
-          label: 'CÁC PHÒNG BAN CHỨC NĂNG',
-        },
-        {
-          path: 'vien-truong',
-          label: 'VIỆN TRƯỞNG',
-        },
-        {
-          path: 'giang-vien',
-          label: 'GIẢNG VIÊN',
-        },
-        {
-          path: 'quy-che',
-          label: 'QUÝ CHẾ',
-        }
-      ]
-    },
-    {
-      path: 'dao-tao',
-      label: 'ĐÀO TẠO',
-      children: [
-        {
-          path: 'tu-si',
-          label: 'TU SĨ',
-        },
-        {
-          path: 'chuc-viec',
-          label: 'CHỨC VIỆC',
-        },
-        {
-          path: 'chuc-sac-khoa-muc',
-          label: 'CHỨC SẮC KHOA MỤC',
-        },
-        {
-          path: 'tra-cuu-van-bang-bang-diem',
-          label: 'TRA CỨU VĂN BẢN - BẢN ĐIỂM',
-        }
-      ]
+  navbar = MENU
+  activePath = '';
+  searchText = '';
+  isShowAccountMenu = false
+
+  @ViewChild('accountMenuTrigger') accountMenuTrigger?: ElementRef;
+
+  @HostListener('document:click', ['$event'])
+  onClick(event: any) {
+    if (this.accountMenuTrigger) {
+      if (this.accountMenuTrigger.nativeElement.contains(event.target)) {
+        this.isShowAccountMenu = !this.isShowAccountMenu
+      } else {
+        this.isShowAccountMenu = false
+      }
+    } else {
+      this.isShowAccountMenu = false
     }
-  ]
+  }
+
+  constructor(private router: Router, private eRef: ElementRef) {
+    this.router.events.subscribe((res: any) => {
+      this.activePath = res?.routerEvent?.url
+      this.searchText = ''
+    })
+  }
+
+  search() {
+    if (this.searchText) {
+      this.isShowMenu = false
+      this.router.navigate(['/tim-kiem'], {
+        state: { searchText: this.searchText }
+      })
+    }
+  }
 }

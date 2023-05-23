@@ -1,16 +1,14 @@
 import { Component, Input, ViewChild, ViewEncapsulation } from '@angular/core';
-import SwiperCore, { Autoplay } from 'swiper';
-SwiperCore.use([Autoplay]);
 import { SwiperComponent } from "swiper/angular";
 
 @Component({
-  selector: 'app-banner',
-  templateUrl: './banner.component.html',
+  selector: 'app-home-slide',
+  templateUrl: './home-slide.component.html',
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./banner.component.scss']
+  styleUrls: ['./home-slide.component.scss']
 })
-export class BannerComponent {
-  @Input() banner = <any>[]
+export class HomeSlideComponent {
+  @Input() slide = <any>[]
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
   slideNext() {
     this.swiper?.swiperRef.slideNext(100);

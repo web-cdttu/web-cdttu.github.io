@@ -11,6 +11,13 @@ import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BannerComponent } from './components/banner/banner.component';
 import { SwiperModule } from 'swiper/angular';
+import { FormsModule } from '@angular/forms';
+import { SearchComponent } from './pages/search/search.component';
+import { HomeIntroduceNewsComponent } from './pages/home/components/home-introduce-news/home-introduce-news.component';
+import { HomeNewsNotificationsComponent } from './pages/home/components/home-news-notifications/home-news-notifications.component';
+import { HomeListItemComponent } from './pages/home/components/home-list-item/home-list-item.component';
+import { HomeSectionTitleComponent } from './pages/home/components/home-section-title/home-section-title.component';
+import { HomeSlideComponent } from './pages/home/components/home-slide/home-slide.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +26,13 @@ import { SwiperModule } from 'swiper/angular';
     FullLayoutComponent,
     HeaderComponent,
     FooterComponent,
-    BannerComponent
+    BannerComponent,
+    SearchComponent,
+    HomeIntroduceNewsComponent,
+    HomeNewsNotificationsComponent,
+    HomeListItemComponent,
+    HomeSectionTitleComponent,
+    HomeSlideComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +44,8 @@ import { SwiperModule } from 'swiper/angular';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    SwiperModule
+    SwiperModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

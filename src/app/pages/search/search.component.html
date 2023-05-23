@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="mt-5 w-full border text-3xl rounded-full overflow-hidden">
+    <input
+      type="text"
+      (input)="search()"
+      placeholder="Tìm kiếm"
+      class="px-10 py-5 w-full outline-none"
+      [(ngModel)]="searchText"
+    />
+  </div>
+  <div class="text-4xl my-5">Kết quả tìm kiếm</div>
+  <div class="my-4" *ngIf="menu?.length > 0">
+    <div class="text-3xl font-semibold">Trang:</div>
+    <div class="list-none">
+      <div class="list-item my-3" *ngFor="let item of menu">
+        <a [routerLink]="item.path"
+          >- {{ item?.label }} <code>{{ item.path }}</code></a
+        >
+        <div class="ml-3" *ngFor="let children of item?.children">
+          <a [routerLink]="item.path + '/' + children.path"
+            >- {{ children?.label }} <code>{{ children.path }}</code></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
