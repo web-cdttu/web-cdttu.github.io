@@ -27,11 +27,11 @@ const routes: Routes = [
       },
       {
         path: 'gioi-thieu',
-        component: HomeComponent
+        loadChildren: () => import('./pages/introduce/introduce.module').then((m) => m.IntroduceModule)
       },
       {
         path: 'dao-tao',
-        component: HomeComponent
+        loadChildren: () => import('./pages/train/train.module').then((m) => m.TrainModule)
       }
     ]
   },

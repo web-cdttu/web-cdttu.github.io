@@ -93,7 +93,7 @@
   <div class="container px-0 lg:px-[1rem]">
     <ul class="block lg:flex justify-around">
       <li
-        class="w-full text-center relative navbar-item cursor-pointer"
+        class="w-full text-center relative navbar-item cursor-pointer text-[white]"
         *ngFor="let item of navbar; let index = index"
         [ngClass]="{ border: item.show, active: activePath === item?.path }"
         [routerLink]="item?.path"
@@ -102,7 +102,7 @@
           class="flex justify-between items-center"
           [ngClass]="{ border: item.show }"
         >
-          <a class="text-[white] py-3 w-full block font-semibold">{{
+          <a class="py-3 w-full block font-semibold">{{
             item?.label
           }}</a>
           <button
@@ -129,14 +129,14 @@
         </div>
         <ul
           *ngIf="item?.children?.length > 0"
-          class="children bg-primary relative lg:absolute top-full left-0 w-full hidden lg:block"
+          class="children bg-primary relative lg:absolute top-full left-0 w-full hidden lg:block shadow"
         >
           <li
-            *ngFor="let child of item.children"
+            *ngFor="let child of item.children" class="text-[white]"
             [routerLink]="item?.path + '/' + child?.path"
             [routerLinkActive]="'active'"
           >
-            <a class="text-[white] py-3 w-full block font-semibold">{{
+            <a class="py-3 w-full block font-semibold">{{
               child?.label
             }}</a>
           </li>
@@ -152,7 +152,7 @@
   <div class="container px-0 lg:px-[1rem]">
     <ul class="block lg:flex justify-around">
       <li
-        class="w-full text-center relative navbar-item"
+        class="w-full text-center relative navbar-item text-[white]"
         *ngFor="let item of navbar; let index = index"
         [ngClass]="{ border: item.show, active: activePath === item?.path }"
       >
@@ -163,7 +163,7 @@
           <a
             [routerLink]="item?.path"
             (click)="isShowMenu = false; item.show = false"
-            class="text-[white] py-3 w-full block px-3 text-left font-semibold"
+            class="py-3 w-full block px-3 text-left font-semibold"
             >{{ item?.label }}</a
           >
           <button
@@ -198,11 +198,11 @@
             'visited lg:visited': item.show
           }"
         >
-          <li *ngFor="let child of item.children">
+          <li *ngFor="let child of item.children" class="text-[white]">
             <a
               [routerLink]="item?.path + '/' + child?.path"
               [routerLinkActive]="'active'"
-              class="text-[white] py-3 w-full block font-semibold"
+              class="py-3 w-full block font-semibold"
               (click)="isShowMenu = false; item.show = false"
               >{{ child?.label }}</a
             >
