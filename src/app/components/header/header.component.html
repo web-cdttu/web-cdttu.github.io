@@ -80,16 +80,27 @@
               />
             </svg>
           </button>
-          <div class="absolute right-0 bg-[white] rounded drop-shadow" *ngIf="isShowAccountMenu">
-            <div class="block py-3 px-5 whitespace-nowrap cursor-pointer transition hover:bg-[#fabb05]">Giảng viên</div>
-            <div class="block py-3 px-5 whitespace-nowrap cursor-pointer transition hover:bg-[#fabb05]">Học viên</div>
+          <div
+            class="absolute right-0 bg-[white] rounded drop-shadow"
+            *ngIf="isShowAccountMenu"
+          >
+            <div
+              class="block py-3 px-5 whitespace-nowrap cursor-pointer transition hover:bg-[#fabb05]"
+            >
+              Giảng viên
+            </div>
+            <div
+              class="block py-3 px-5 whitespace-nowrap cursor-pointer transition hover:bg-[#fabb05]"
+            >
+              Học viên
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="navbar bg-primary sticky top-0 z-50 hidden lg:block">
+<div class="navbar bg-primary sticky top-0 z-50 hidden lg:block shadow">
   <div class="container px-0 lg:px-[1rem]">
     <ul class="block lg:flex justify-around">
       <li
@@ -102,9 +113,7 @@
           class="flex justify-between items-center"
           [ngClass]="{ border: item.show }"
         >
-          <a class="py-3 w-full block font-semibold">{{
-            item?.label
-          }}</a>
+          <a class="py-3 w-full block font-semibold">{{ item?.label }}</a>
           <button
             class="block lg:hidden h-6 w-6 text-white mx-2"
             *ngIf="item?.children?.length > 0"
@@ -132,13 +141,12 @@
           class="children bg-primary relative lg:absolute top-full left-0 w-full hidden lg:block shadow"
         >
           <li
-            *ngFor="let child of item.children" class="text-[white]"
+            *ngFor="let child of item.children"
+            class="text-[white]"
             [routerLink]="item?.path + '/' + child?.path"
             [routerLinkActive]="'active'"
           >
-            <a class="py-3 w-full block font-semibold">{{
-              child?.label
-            }}</a>
+            <a class="py-3 w-full block font-semibold">{{ child?.label }}</a>
           </li>
         </ul>
       </li>
@@ -146,7 +154,7 @@
   </div>
 </div>
 <div
-  class="navbar bg-primary sticky top-0 z-[9999] block lg:hidden pb-3"
+  class="navbar bg-primary sticky top-0 z-[9999] block lg:hidden pb-3 shadow"
   *ngIf="isShowMenu"
 >
   <div class="container px-0 lg:px-[1rem]">
