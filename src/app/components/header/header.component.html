@@ -102,7 +102,7 @@
           class="flex justify-between items-center"
           [ngClass]="{ border: item.show }"
         >
-          <a class="text-black py-3 w-full block font-semibold">{{
+          <a class="text-[white] py-3 w-full block font-semibold">{{
             item?.label
           }}</a>
           <button
@@ -136,7 +136,7 @@
             [routerLink]="item?.path + '/' + child?.path"
             [routerLinkActive]="'active'"
           >
-            <a class="text-black py-3 w-full block font-semibold">{{
+            <a class="text-[white] py-3 w-full block font-semibold">{{
               child?.label
             }}</a>
           </li>
@@ -163,7 +163,7 @@
           <a
             [routerLink]="item?.path"
             (click)="isShowMenu = false; item.show = false"
-            class="text-black py-3 w-full block px-3 text-left font-semibold"
+            class="text-[white] py-3 w-full block px-3 text-left font-semibold"
             >{{ item?.label }}</a
           >
           <button
@@ -202,7 +202,7 @@
             <a
               [routerLink]="item?.path + '/' + child?.path"
               [routerLinkActive]="'active'"
-              class="text-black py-3 w-full block font-semibold"
+              class="text-[white] py-3 w-full block font-semibold"
               (click)="isShowMenu = false; item.show = false"
               >{{ child?.label }}</a
             >

@@ -9,8 +9,10 @@
     transition: all 0.5s;
     &.active,
     &:hover {
-      background-color: #fbbc05;
-      color: #000000;
+      a {
+        background-color: #fbbc05;
+        color: #000000;
+      }
     }
   }
   &-item {

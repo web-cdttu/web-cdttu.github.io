@@ -7,4 +7,18 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+  webLocation: any;
+
+  constructor() {
+    this.webLocation = location.origin
+  }
+
+  scrollToTop() {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
+
 }
