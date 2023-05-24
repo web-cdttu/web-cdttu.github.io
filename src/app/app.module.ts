@@ -18,6 +18,7 @@ import { HomeNewsNotificationsComponent } from './pages/home/components/home-new
 import { HomeListItemComponent } from './pages/home/components/home-list-item/home-list-item.component';
 import { HomeSectionTitleComponent } from './pages/home/components/home-section-title/home-section-title.component';
 import { HomeSlideComponent } from './pages/home/components/home-slide/home-slide.component';
+import { HomeTrainComponent } from './pages/home/components/home-train/home-train.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HomeSlideComponent } from './pages/home/components/home-slide/home-slid
     HomeNewsNotificationsComponent,
     HomeListItemComponent,
     HomeSectionTitleComponent,
-    HomeSlideComponent
+    HomeSlideComponent,
+    HomeTrainComponent
   ],
   imports: [
     BrowserModule,
