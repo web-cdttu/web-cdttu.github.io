@@ -8,13 +8,13 @@
     <ng-template swiperSlide *ngFor="let item of slide">
       <div
         class="h-full w-full relative cursor-pointer"
-        [routerLink]="item.path"
+        [routerLink]="item?.path"
       >
         <div class="absolute top-0 right-0 bottom-0 left-0 flex items-end">
           <div class="p-3 bg-[black] w-full">
             <div class="w-2/3">
               <div class="truncate text-[white]">
-                {{ item?.label }}
+                {{ item?.title }}
               </div>
             </div>
           </div>
