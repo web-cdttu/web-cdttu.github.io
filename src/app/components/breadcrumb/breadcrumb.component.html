@@ -1,0 +1,18 @@
+<div
+  class="flex flex-wrap p-5 border-b-2 border-primary"
+  [ngClass]="{
+    'justify-start': align === 'start',
+    'justify-end': align === 'end'
+  }"
+>
+  <div>
+    <a [href]="'/'">TRANG CHỦ</a>
+  </div>
+  <div
+    *ngFor="let item of breadcrumb; let index = index"
+    [ngClass]="{ 'text-primary font-bold': index === breadcrumb?.length - 1 }"
+  >
+    <span class="mx-2">/</span>
+    <a [href]="item?.path">{{ item?.label }}</a>
+  </div>
+</div>

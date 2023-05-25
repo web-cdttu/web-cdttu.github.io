@@ -28,6 +28,12 @@ export class NewsService {
         .then((req => {
           const workbook = read(req)
           ref.newsWorbook = workbook
+          const news = this.newsWorbook.Sheets[this.newsSheet]
+          const data = this.decodeRawSheetData(news).filter((item: any) => !!item.id)
+          data?.forEach((item: any) => {
+            item.date = new Date(item.date).getTime()
+          })
+          ref.newsData = data
           this.isActiveNews = true
         }))
     }
@@ -80,6 +86,29 @@ export class NewsService {
         }
         const response = {
           code: data?.length > 0 ? 200 : 404,
+          data: data
+        }
+        observable.next(response)
+        observable.complete()
+      })
+    }
+    return new Observable((observable) => {
+      const response = {
+        code: 404
+      }
+      observable.next(response)
+      observable.complete()
+    })
+  }
+
+  getNewsBySlug(slug: any): Observable<any> {
+    console.log(this.newsData);
+
+    if (this.newsWorbook) {
+      return new Observable((observable) => {
+        const data = this.newsData.find((item: any) => item.slug == slug)
+        const response = {
+          code: data ? 200 : 404,
           data: data
         }
         observable.next(response)

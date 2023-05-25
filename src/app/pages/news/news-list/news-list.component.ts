@@ -2,22 +2,20 @@ import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular
 import { NewsService } from 'src/app/shared/service/news/news.service';
 
 @Component({
-  selector: 'app-home-news-notifications',
-  templateUrl: './home-news-notifications.component.html',
-  styleUrls: ['./home-news-notifications.component.scss']
+  selector: 'app-news-list',
+  templateUrl: './news-list.component.html',
+  styleUrls: ['./news-list.component.scss']
 })
-export class HomeNewsNotificationsComponent implements OnInit, AfterViewChecked {
-  newsSlide = <any>[]
-  newsList = <any>[]
-  notificationList = <any>[]
+export class NewsListComponent implements OnInit, AfterViewChecked {
 
-  constructor(private cd: ChangeDetectorRef, private newsService: NewsService) {
+  newsList = <any>[];
+
+  constructor(private newsService: NewsService, private cd: ChangeDetectorRef) {
 
   }
 
   ngOnInit(): void {
     this.getNewsList()
-    this.getNotificationList()
   }
 
   ngAfterViewChecked(): void {
@@ -34,7 +32,6 @@ export class HomeNewsNotificationsComponent implements OnInit, AfterViewChecked 
       return null
     })
     this.newsList = newsList.splice(newsList?.length > 7 ? 7 : newsList.length / 2, 7)
-    this.newsSlide = newsList.splice(0, 7)
     try {
       this.newsService.getAllNews()
         .subscribe((res: any) => {
@@ -45,30 +42,17 @@ export class HomeNewsNotificationsComponent implements OnInit, AfterViewChecked 
                 return {
                   id: item?.id,
                   title: item?.title,
+                  slug: item?.slug,
                   date: item?.date,
                   path: `/tin-tuc/${item.slug}`,
                   image: item.thumbnail
                 }
               })
-            this.newsSlide = newsList.splice(newsList?.length > 7 ? 7 : newsList.length / 2, 7)
-            this.newsList = newsList.splice(0, 7)
+            this.newsList = newsList
           }
         })
     } catch (e) {
       console.log(e);
-    }
-  }
-
-  getNotificationList() {
-    this.notificationList = Array.from(Array(14), (item, index) => {
-      return null
-    }).sort((a: any, b: any) => a?.date > b?.date ? -1 : 1)
-    this.notificationList = this.notificationList.slice(0, 7)
-  }
-
-  getStyle(element: any) {
-    return {
-      height: element.offsetHeight
     }
   }
 }
