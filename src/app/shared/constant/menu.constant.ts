@@ -4,42 +4,6 @@ export const MENU = <any>[
     label: 'TRANG CHỦ'
   },
   {
-    path: '/tin-tuc',
-    label: 'TIN TỨC',
-    children: [
-      {
-        path: '',
-        label: 'TIN TỨC',
-      },
-      {
-        path: 'su-kien',
-        label: 'SỰ KIỆN',
-      }
-    ]
-  },
-  {
-    path: '/thong-bao',
-    label: 'THÔNG BÁO',
-    children: [
-      {
-        path: 'bac-tu-si',
-        label: 'BẬC TU SĨ',
-      },
-      {
-        path: 'bac-chuc-viec',
-        label: 'BẬC CHỨC VIỆC',
-      },
-      {
-        path: 'bac-chuc-sac-khoa-muc',
-        label: 'BẬC CHỨC SẮC KHOA MỤC',
-      },
-      {
-        path: 'thong-bao-giang-vien',
-        label: 'THÔNG BÁO GIẢNG VIÊN',
-      }
-    ]
-  },
-  {
     path: '/gioi-thieu',
     label: 'GIỚI THIỆU',
     children: [
@@ -74,12 +38,12 @@ export const MENU = <any>[
     label: 'ĐÀO TẠO',
     children: [
       {
-        path: 'tu-si',
-        label: 'TU SĨ',
+        path: 'tu-si-khoa-muc',
+        label: 'TU SĨ KHOA MỤC',
       },
       {
-        path: 'chuc-viec',
-        label: 'CHỨC VIỆC',
+        path: 'chuc-viec-khoa-muc',
+        label: 'CHỨC VIỆC KHOA MỤC',
       },
       {
         path: 'chuc-sac-khoa-muc',
@@ -88,6 +52,42 @@ export const MENU = <any>[
       {
         path: 'tra-cuu-van-bang-bang-diem',
         label: 'TRA CỨU VĂN BẢN - BẢN ĐIỂM',
+      }
+    ]
+  },
+  {
+    path: '/tin-tuc',
+    label: 'TIN TỨC',
+    children: [
+      {
+        path: '',
+        label: 'TIN TỨC',
+      },
+      {
+        path: 'su-kien',
+        label: 'SỰ KIỆN',
+      }
+    ]
+  },
+  {
+    path: '/thong-bao',
+    label: 'THÔNG BÁO',
+    children: [
+      {
+        path: 'bac-tu-si-khoa-muc',
+        label: 'BẬC TU SĨ KHOA MỤC',
+      },
+      {
+        path: 'bac-chuc-viec-khoa-muc',
+        label: 'BẬC CHỨC VIỆC KHOA MỤC',
+      },
+      {
+        path: 'bac-chuc-sac-khoa-muc',
+        label: 'BẬC CHỨC SẮC KHOA MỤC',
+      },
+      {
+        path: 'thong-bao-giang-vien',
+        label: 'THÔNG BÁO GIẢNG VIÊN',
       }
     ]
   }
