@@ -1,4 +1,4 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NewsService } from 'src/app/shared/service/news/news.service';
 
 @Component({
@@ -10,6 +10,8 @@ export class HomeNewsNotificationsComponent implements OnInit, AfterViewChecked 
   newsSlide = <any>[]
   newsList = <any>[]
   notificationList = <any>[]
+  offsetHeight: any = 245;
+  @ViewChild('newListContainer') newListContainer: any = ElementRef
 
   constructor(private cd: ChangeDetectorRef, private newsService: NewsService) {
 
@@ -52,6 +54,7 @@ export class HomeNewsNotificationsComponent implements OnInit, AfterViewChecked 
               })
             this.newsSlide = newsList.splice(newsList?.length > 7 ? 7 : newsList.length / 2, 7)
             this.newsList = newsList.splice(0, 7)
+            this.offsetHeight = this.newListContainer?.nativeElement?.offsetHeight
           }
         })
     } catch (e) {
@@ -64,11 +67,5 @@ export class HomeNewsNotificationsComponent implements OnInit, AfterViewChecked 
       return null
     }).sort((a: any, b: any) => a?.date > b?.date ? -1 : 1)
     this.notificationList = this.notificationList.slice(0, 7)
-  }
-
-  getStyle(element: any) {
-    return {
-      height: element.offsetHeight
-    }
   }
 }

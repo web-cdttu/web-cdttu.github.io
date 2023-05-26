@@ -8,7 +8,7 @@
       >
       <p
         class="text-justify line-clamp-[8] select-text"
-        [ngStyle]="{ maxHeight: getStyle(newListContainer).height + 'px' }"
+        [ngStyle]="{ maxHeight: this.offsetHeight + 'px' }"
       >
         {{ introduceContent }}
       </p>
@@ -20,7 +20,7 @@
       <div class="mt-4 flex flex-wrap">
         <div
           class="w-full lg:w-1/2 lg:pr-3"
-          [ngStyle]="{ height: getStyle(newListContainer).height + 'px' }"
+          [ngStyle]="{ height: this.offsetHeight + 'px' }"
         >
           <ng-container *ngIf="newsList[0]?.title">
             <app-home-slide

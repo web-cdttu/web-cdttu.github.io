@@ -14,6 +14,10 @@ const routes: Routes = [
         component: NewsListComponent
       },
       {
+        path: 'su-kien',
+        component: NewsListComponent
+      },
+      {
         path: ':slug',
         component: NewsDetailsComponent
       }

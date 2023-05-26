@@ -9,9 +9,24 @@ import { NewsService } from 'src/app/shared/service/news/news.service';
 export class NewsListComponent implements OnInit, AfterViewChecked {
 
   newsList = <any>[];
+  breadcrumb = <any>[];
 
   constructor(private newsService: NewsService, private cd: ChangeDetectorRef) {
-
+    if (location.pathname.includes('su-kien')) {
+      this.breadcrumb = [
+        {
+          path: 'tin-tuc/su-kien',
+          label: 'SỰ KIỆN'
+        }
+      ]
+    } else {
+      this.breadcrumb = [
+        {
+          path: '',
+          label: 'TIN TỨC'
+        }
+      ]
+    }
   }
 
   ngOnInit(): void {

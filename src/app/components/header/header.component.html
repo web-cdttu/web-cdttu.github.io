@@ -106,7 +106,7 @@
       <li
         class="w-full text-center relative navbar-item cursor-pointer text-[white]"
         *ngFor="let item of navbar; let index = index"
-        [ngClass]="{ border: item.show, active: activePath === item?.path }"
+        [ngClass]="{ border: item.show, active: activePath && activePath.includes(item?.path) }"
         [routerLink]="item?.path"
       >
         <div
@@ -162,7 +162,7 @@
       <li
         class="w-full text-center relative navbar-item text-[white]"
         *ngFor="let item of navbar; let index = index"
-        [ngClass]="{ border: item.show, active: activePath === item?.path }"
+        [ngClass]="{ border: item.show, active: activePath && activePath.includes(item?.path) }"
       >
         <div
           class="flex justify-between items-center"

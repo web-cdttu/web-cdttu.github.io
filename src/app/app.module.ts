@@ -19,7 +19,6 @@ import { HomeListItemComponent } from './pages/home/components/home-list-item/ho
 import { HomeSectionTitleComponent } from './pages/home/components/home-section-title/home-section-title.component';
 import { HomeSlideComponent } from './pages/home/components/home-slide/home-slide.component';
 import { HomeTrainComponent } from './pages/home/components/home-train/home-train.component';
-import { SafePipe } from './shared/pipe/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -35,8 +34,7 @@ import { SafePipe } from './shared/pipe/safe.pipe';
     HomeListItemComponent,
     HomeSectionTitleComponent,
     HomeSlideComponent,
-    HomeTrainComponent,
-    SafePipe
+    HomeTrainComponent
   ],
   imports: [
     BrowserModule,
