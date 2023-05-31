@@ -107,11 +107,11 @@
         class="w-full text-center relative navbar-item cursor-pointer text-[white]"
         *ngFor="let item of navbar; let index = index"
         [ngClass]="{ border: item.show, active: activePath && activePath.includes(item?.path) }"
-        [routerLink]="item?.path"
       >
         <div
           class="flex justify-between items-center"
           [ngClass]="{ border: item.show }"
+          [routerLink]="item?.path"
         >
           <a class="py-3 w-full block font-semibold">{{ item?.label }}</a>
           <button

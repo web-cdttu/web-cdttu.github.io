@@ -51,7 +51,7 @@ export const MENU = <any>[
       },
       {
         path: 'tra-cuu-van-bang-bang-diem',
-        label: 'TRA CỨU VĂN BẢN - BẢN ĐIỂM',
+        label: 'TRA CỨU VĂN BẰNG - BẢNG ĐIỂM',
       }
     ]
   },

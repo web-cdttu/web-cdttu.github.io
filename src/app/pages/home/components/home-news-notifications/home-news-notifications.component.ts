@@ -84,7 +84,7 @@ export class HomeNewsNotificationsComponent implements OnInit, AfterViewChecked 
                   id: item?.data?.id,
                   title: `${item?.data?.id} | ${item?.data?.title}`,
                   date: item?.data?.date,
-                  path: `/thong-bao/${item?.data?.id}`,
+                  path: `/thong-bao/${item?.slug}/${item?.data?.id}`,
                   image: item?.data.thumbnail
                 }
               })

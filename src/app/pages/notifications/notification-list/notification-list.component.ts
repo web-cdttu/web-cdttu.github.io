@@ -95,12 +95,11 @@ export class NotificationListComponent implements OnInit, AfterViewChecked {
             if (res.code === 200) {
               const notificationList = res.data?.sort((a: any, b: any) => a.data.date > b.data.date ? -1 : 1)
                 .map((item: any) => {
-                  const parrent = item.type.replace('notification', '').split(/(?!^.*[A-Z]{2,}.*$)/).map((sp: any) => sp == sp.toUpperCase() ? `-${sp.toLowerCase()}` : sp).toString().replaceAll(',', '').replace('-', '')
                   return {
                     id: item?.data?.id,
                     title: `${item?.data?.id} | ${item?.data?.title}`,
                     date: item?.data?.date,
-                    path: `/thong-bao/${parrent}/${item?.data?.id}`,
+                    path: `/thong-bao/${item?.slug}/${item?.data?.id}`,
                     image: item?.data?.thumbnail
                   }
                 })

@@ -72,12 +72,13 @@ export class NotificationService {
         const settingData = this.decodeRawSheetData(notification).filter((item: any) => !!item.id)
         const data = <any>[]
         settingData?.forEach((item: any) => {
-          if (item?.id) {
+          if (item?.id && item?.slug) {
             const currentData = this.decodeRawSheetData(this.notificationWorbook.Sheets[item?.id]).filter((item: any) => !!item.id)
             currentData.forEach((cd: any) => {
               data.push({
                 type: item.id,
-                data: cd
+                data: cd,
+                slug: item?.slug
               })
             })
           }
