@@ -7,7 +7,7 @@ import { NotificationListComponent } from './notification-list/notification-list
 import { BreadcrumbModule } from "../../components/breadcrumb/breadcrumb.module";
 import { NofiticationListItemComponent } from './components/notification-list-item/notification-list-item.component';
 import { NotificationDetailsComponent } from './notification-details/notification-details.component';
-import { SafePipe } from 'src/app/shared/pipe/safe.pipe';
+import { SafePipe } from './pipe/safe.pipe';
 
 
 @NgModule({
