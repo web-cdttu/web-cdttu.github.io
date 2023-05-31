@@ -74,19 +74,19 @@ export const MENU = <any>[
     label: 'THÔNG BÁO',
     children: [
       {
-        path: 'bac-tu-si-khoa-muc',
+        path: 'tu-si-khoa-muc',
         label: 'BẬC TU SĨ KHOA MỤC',
       },
       {
-        path: 'bac-chuc-viec-khoa-muc',
+        path: 'chuc-viec-khoa-muc',
         label: 'BẬC CHỨC VIỆC KHOA MỤC',
       },
       {
-        path: 'bac-chuc-sac-khoa-muc',
+        path: 'chuc-sac-khoa-muc',
         label: 'BẬC CHỨC SẮC KHOA MỤC',
       },
       {
-        path: 'thong-bao-giang-vien',
+        path: 'giang-vien',
         label: 'THÔNG BÁO GIẢNG VIÊN',
       }
     ]

@@ -60,30 +60,12 @@ export class NewsService {
   getAllNews(request?: any): Observable<any> {
     if (this.newsWorbook) {
       return new Observable((observable) => {
-        let querySheet = this.newsSheet
-        if (request?.subject && request?.time) {
-          querySheet = request.subject
-        }
+        const querySheet = this.newsSheet
         const news = this.newsWorbook.Sheets[querySheet]
-        let data = this.decodeRawSheetData(news).filter((item: any) => !!item.id)
+        const data = this.decodeRawSheetData(news).filter((item: any) => !!item.id)
         data?.forEach((item: any) => {
           item.date = new Date(item.date).getTime()
         })
-        if (request?.time) {
-          data = data.map((item: any) => {
-            const reponseObject = <any>{}
-            reponseObject['id'] = item.id
-            reponseObject['na'] = item.na
-            reponseObject['bi'] = item.bi
-            reponseObject['checkedIn'] = item[request.time]
-            return reponseObject
-          })
-        }
-        if (!request?.subject && !request?.time) {
-          // eslint-disable-next-line @typescript-eslint/no-this-alias
-          const ref: Mutable<this> = this;
-          ref.newsData = data
-        }
         const response = {
           code: data?.length > 0 ? 200 : 404,
           data: data

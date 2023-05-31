@@ -1,0 +1,17 @@
+<app-breadcrumb [breadcrumb]="breadcrumb" [align]="'end'"></app-breadcrumb>
+<div class="p-3">
+  <h2 class="text-2xl font-semibold">THÔNG BÁO {{ title }}</h2>
+  <ng-container *ngIf="notificationList[0]?.title">
+    <app-notification-list-item
+      *ngFor="let item of notificationList"
+      [data]="item"
+      [routerLink]="item?.path"
+      >{{ item?.title }}</app-notification-list-item
+    >
+  </ng-container>
+  <ng-container *ngIf="!notificationList[0]?.title">
+    <app-notification-list-item
+      *ngFor="let item of notificationList"
+    ></app-notification-list-item
+  ></ng-container>
+</div>

@@ -1,5 +1,6 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NewsService } from 'src/app/shared/service/news/news.service';
+import { NotificationService } from 'src/app/shared/service/notification/notification.service';
 
 @Component({
   selector: 'app-home-news-notifications',
@@ -13,7 +14,11 @@ export class HomeNewsNotificationsComponent implements OnInit, AfterViewChecked 
   offsetHeight: any = 245;
   @ViewChild('newListContainer') newListContainer: any = ElementRef
 
-  constructor(private cd: ChangeDetectorRef, private newsService: NewsService) {
+  constructor(
+    private cd: ChangeDetectorRef,
+    private newsService: NewsService,
+    private notificationService: NotificationService
+    ) {
 
   }
 
@@ -28,6 +33,9 @@ export class HomeNewsNotificationsComponent implements OnInit, AfterViewChecked 
       if (this.newsService.isActiveNews && !this.newsList[0]?.title) {
         this.getNewsList()
       }
+      if (this.notificationService.isActiveNotification && !this.notificationList[0]?.title) {
+        this.getNotificationList()
+      }
     })
   }
 
@@ -41,7 +49,6 @@ export class HomeNewsNotificationsComponent implements OnInit, AfterViewChecked 
       this.newsService.getAllNews()
         .subscribe((res: any) => {
           if (res.code === 200) {
-            console.log(res.data);
             const newsList = res.data.sort((a: any, b: any) => a.date > b.date ? -1 : 1)
               .map((item: any) => {
                 return {
@@ -63,9 +70,30 @@ export class HomeNewsNotificationsComponent implements OnInit, AfterViewChecked 
   }
 
   getNotificationList() {
-    this.notificationList = Array.from(Array(14), (item, index) => {
+    const notificationList = Array.from(Array(14), (item, index) => {
       return null
-    }).sort((a: any, b: any) => a?.date > b?.date ? -1 : 1)
-    this.notificationList = this.notificationList.slice(0, 7)
+    })
+    this.notificationList = notificationList.splice(notificationList?.length > 7 ? 7 : notificationList.length / 2, 7)
+    try {
+      this.notificationService.getAllNotification()
+        .subscribe((res: any) => {
+          if (res.code === 200) {
+            const notificationList = res.data.sort((a: any, b: any) => a.data.date > b.data.date ? -1 : 1)
+              .map((item: any) => {
+                return {
+                  id: item?.data?.id,
+                  title: `${item?.data?.id} | ${item?.data?.title}`,
+                  date: item?.data?.date,
+                  path: `/thong-bao/${item?.data?.id}`,
+                  image: item?.data.thumbnail
+                }
+              })
+            this.notificationList = notificationList.splice(0, 7)
+            this.offsetHeight = this.newListContainer?.nativeElement?.offsetHeight
+          }
+        })
+    } catch (e) {
+      console.log(e);
+    }
   }
 }

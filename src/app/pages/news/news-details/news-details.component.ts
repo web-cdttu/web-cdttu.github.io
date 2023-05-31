@@ -12,6 +12,8 @@ export class NewsDetailsComponent implements OnInit, AfterViewChecked {
   newsDetails: NewsModel = new NewsModel();
   slug: any;
   breadcrumb: any;
+  newsRoute = <any>{}
+  loadingNews = false;
 
   @ViewChild('googleDocContent') googleDocContent = ElementRef;
 
@@ -20,16 +22,18 @@ export class NewsDetailsComponent implements OnInit, AfterViewChecked {
     private route: ActivatedRoute,
     private cd: ChangeDetectorRef
   ) {
-
+    this.loadingNews = true
   }
 
   ngOnInit(): void {
+    this.loadingNews = true
     this.route.params.subscribe((query) => {
       if (query['slug']) {
+        this.loadingNews = true
         this.slug = query['slug']
+        this.getNewsDetails()
       }
     })
-    this.getNewsDetails()
   }
 
   ngAfterViewChecked(): void {
@@ -62,6 +66,12 @@ export class NewsDetailsComponent implements OnInit, AfterViewChecked {
                 label: this.newsDetails?.title
               }
             ]
+            const currentNewsIndex = this.newsService.newsData.indexOf(this.newsService.newsData.find((item: any) => item.id == this.newsDetails.id))
+            this.newsRoute = {
+              prev: currentNewsIndex > 0 ? this.newsService.newsData[currentNewsIndex - 1] : null,
+              next: this.newsService.newsData[currentNewsIndex + 1]
+            }
+            this.loadingNews = false
           }
         })
     } catch (e) {
