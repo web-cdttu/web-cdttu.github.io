@@ -21,17 +21,17 @@ export class DetailsComponent implements OnInit {
     this.route.params.subscribe((query) => {
       this.breadcrumb = [
         {
-          path: 'gioi-thieu',
-          label: 'GIỚI THIỆU'
+          path: 'dao-tao',
+          label: 'ĐÀO TẠO'
         }
       ]
       if (query['type']) {
         this.type = query['type']
-        const foundPage = MENU.find((item: any) => item.path == '/gioi-thieu').children.find((item: any) => location.pathname.includes(item.path))
+        const foundPage = MENU.find((item: any) => item.path == '/dao-tao').children.find((item: any) => location.pathname.includes(item.path))
         this.breadcrumb = [
           {
-            path: 'gioi-thieu',
-            label: 'GIỚI THIỆU'
+            path: 'dao-tao',
+            label: 'ĐÀO TẠO'
           },
           {
             path: foundPage?.path,

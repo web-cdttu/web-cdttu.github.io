@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { IntroduceRoutingModule } from './introduce-routing.module';
 import { IntroduceComponent } from './introduce.component';
 import { DetailsComponent } from './details/details.component';
-import { SafePipe } from './pipe/safe.pipe';
 import { BreadcrumbModule } from 'src/app/components/breadcrumb/breadcrumb.module';
 import { LuocSuComponent } from './luoc-su/luoc-su.component';
 import { ChucNangNhiemVuComponent } from './chuc-nang-nhiem-vu/chuc-nang-nhiem-vu.component';
@@ -18,7 +17,6 @@ import { QuyCheComponent } from './quy-che/quy-che.component';
   declarations: [
     IntroduceComponent,
     DetailsComponent,
-    SafePipe,
     LuocSuComponent,
     ChucNangNhiemVuComponent,
     CacPhongBanChucNangComponent,

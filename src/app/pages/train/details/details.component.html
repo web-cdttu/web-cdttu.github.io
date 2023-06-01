@@ -1,0 +1,11 @@
+<app-breadcrumb [breadcrumb]="breadcrumb" [align]="'end'"></app-breadcrumb>
+<app-tu-si-khoa-muc *ngIf="type === 'tu-si-khoa-muc'"></app-tu-si-khoa-muc>
+<app-chuc-viec-khoa-muc
+  *ngIf="type === 'chuc-viec-khoa-muc'"
+></app-chuc-viec-khoa-muc>
+<app-chuc-sac-khoa-muc
+  *ngIf="type === 'chuc-sac-khoa-muc'"
+></app-chuc-sac-khoa-muc>
+<app-tra-cuu-van-bang-bang-diem
+  *ngIf="type === 'tra-cuu-van-bang-bang-diem'"
+></app-tra-cuu-van-bang-bang-diem>
