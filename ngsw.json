@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1685610979270,
+  "timestamp": 1685611410957,
   "index": "https://web-cdttu.github.io/index.html",
   "assetGroups": [
     {
@@ -18,11 +18,11 @@
         "https://web-cdttu.github.io/common.f20154bd230ee518.js",
         "https://web-cdttu.github.io/favicon.ico",
         "https://web-cdttu.github.io/index.html",
-        "https://web-cdttu.github.io/main.eef68984260eb0c1.js",
+        "https://web-cdttu.github.io/main.a747ac33ea60b746.js",
         "https://web-cdttu.github.io/manifest.webmanifest",
         "https://web-cdttu.github.io/polyfills.b51b8edc601a6e74.js",
         "https://web-cdttu.github.io/runtime.a32faa41fd35fe5e.js",
-        "https://web-cdttu.github.io/styles.1e4855570fc6c3a7.css"
+        "https://web-cdttu.github.io/styles.67b471f316773ab6.css"
       ],
       "patterns": []
     },
@@ -66,12 +66,12 @@
     "https://web-cdttu.github.io/assets/images/tu-si-khoa-muc.svg": "fe26d13a9a9bb278be2346070c26d1ed1d14f01a",
     "https://web-cdttu.github.io/common.f20154bd230ee518.js": "a3280aed9554e0d1a20d03020c9a7520c8405e90",
     "https://web-cdttu.github.io/favicon.ico": "b125295a96e45af33b6a7f4169425b51d992c5f6",
-    "https://web-cdttu.github.io/index.html": "e86c94e86b71830790d9e1d70279e4152f434bfc",
-    "https://web-cdttu.github.io/main.eef68984260eb0c1.js": "d30101534eff0d7852207e413211d25c8bdf8102",
+    "https://web-cdttu.github.io/index.html": "a95677af4a0b46b58f40fa8ebf05eb38ae4ca539",
+    "https://web-cdttu.github.io/main.a747ac33ea60b746.js": "e09bc8e865d931e823ae1aa320faa9290b85a1a6",
     "https://web-cdttu.github.io/manifest.webmanifest": "e45a0df9578af7cd77b7d8df0c628b85e014e7a0",
     "https://web-cdttu.github.io/polyfills.b51b8edc601a6e74.js": "eeb3f3c1d4c9bb3b75b2aadb368be7bd21bfa312",
     "https://web-cdttu.github.io/runtime.a32faa41fd35fe5e.js": "59aeb3241ea43a95931b6bc4111ea86887420bd2",
-    "https://web-cdttu.github.io/styles.1e4855570fc6c3a7.css": "613822edcd9d143f245ba176bed94c14faf2efcd"
+    "https://web-cdttu.github.io/styles.67b471f316773ab6.css": "1c6ef70f3b4045355b1cf886a98e25b665d6e25e"
   },
   "navigationUrls": [
     {
