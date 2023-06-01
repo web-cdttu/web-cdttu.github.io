@@ -76,7 +76,7 @@ export class NotificationListComponent implements OnInit, AfterViewChecked {
     try {
       if (this.type) {
         const notificationKey = `notification${this.type.split('-').map((item: any) => item.charAt(0).toUpperCase() + item.slice(1)).toString('').replaceAll(',', '')}`
-        const notificationList = this.notificationService.notificationData[notificationKey]?.sort((a: any, b: any) => a.data.date > b.data.date ? -1 : 1)
+        const notificationList = this.notificationService.notificationData[notificationKey]?.sort((a: any, b: any) => (a?.data?.date > b?.data?.date) || (a?.date > b?.date) ? -1 : 1)
           .map((item: any) => {
             return {
               id: item?.id,
