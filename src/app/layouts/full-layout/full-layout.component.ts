@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './full-layout.component.html',
   styleUrls: ['./full-layout.component.scss']
 })
-export class FullLayoutComponent implements OnInit {
+export class FullLayoutComponent implements OnInit, AfterViewChecked {
 
   isOffline = false
 
@@ -23,6 +23,10 @@ export class FullLayoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isOffline = !navigator.onLine;
+  }
+
+  ngAfterViewChecked() {
     this.isOffline = !navigator.onLine;
   }
 }
