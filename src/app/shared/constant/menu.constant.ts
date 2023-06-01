@@ -29,7 +29,7 @@ export const MENU = <any>[
       },
       {
         path: 'quy-che',
-        label: 'QUÝ CHẾ',
+        label: 'QUY CHẾ',
       }
     ]
   },

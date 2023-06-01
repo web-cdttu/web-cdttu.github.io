@@ -1,0 +1,11 @@
+<app-breadcrumb [breadcrumb]="breadcrumb" [align]="'end'"></app-breadcrumb>
+<app-luoc-su *ngIf="type === 'luoc-su'"></app-luoc-su>
+<app-chuc-nang-nhiem-vu
+  *ngIf="type === 'chuc-nang-nhiem-vu'"
+></app-chuc-nang-nhiem-vu>
+<app-cac-phong-ban-chuc-nang
+  *ngIf="type === 'cac-phong-ban-chuc-nang'"
+></app-cac-phong-ban-chuc-nang>
+<app-vien-truong *ngIf="type === 'vien-truong'"></app-vien-truong>
+<app-giang-vien *ngIf="type === 'giang-vien'"></app-giang-vien>
+<app-quy-che *ngIf="type === 'quy-che'"></app-quy-che>

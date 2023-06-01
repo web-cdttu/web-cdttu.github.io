@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MENU } from 'src/app/shared/constant/menu.constant';
 
 @Component({
   selector: 'app-introduce',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./introduce.component.scss']
 })
 export class IntroduceComponent {
-
+  menu = MENU.find((item: any) => item.path == '/gioi-thieu')?.children
 }
