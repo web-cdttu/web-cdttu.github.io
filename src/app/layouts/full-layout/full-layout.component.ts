@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,10 @@ import { Router } from '@angular/router';
   templateUrl: './full-layout.component.html',
   styleUrls: ['./full-layout.component.scss']
 })
-export class FullLayoutComponent {
+export class FullLayoutComponent implements OnInit {
+
+  isOffline = false
+
   constructor(private router: Router) {
     setTimeout(() => {
       router.events.subscribe((val: any) => {
@@ -17,5 +20,9 @@ export class FullLayoutComponent {
         });
       });
     })
+  }
+
+  ngOnInit(): void {
+    this.isOffline = !navigator.onLine;
   }
 }
