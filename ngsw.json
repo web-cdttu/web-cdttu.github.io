@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
-  "timestamp": 1685611567943,
-  "index": "https://web-cdttu.github.io/index.html",
+  "timestamp": 1689065760726,
+  "index": "https://dev.caodaion.com/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,18 +11,13 @@
         "ignoreVary": true
       },
       "urls": [
-        "https://web-cdttu.github.io/17.f087e0e97a13465c.js",
-        "https://web-cdttu.github.io/262.a4cd86b7afd348bf.js",
-        "https://web-cdttu.github.io/672.d6fd60481256a264.js",
-        "https://web-cdttu.github.io/960.c14266454e4a72fb.js",
-        "https://web-cdttu.github.io/common.f20154bd230ee518.js",
-        "https://web-cdttu.github.io/favicon.ico",
-        "https://web-cdttu.github.io/index.html",
-        "https://web-cdttu.github.io/main.4201399781722de0.js",
-        "https://web-cdttu.github.io/manifest.webmanifest",
-        "https://web-cdttu.github.io/polyfills.b51b8edc601a6e74.js",
-        "https://web-cdttu.github.io/runtime.a32faa41fd35fe5e.js",
-        "https://web-cdttu.github.io/styles.64fd7049c6c2b61b.css"
+        "https://dev.caodaion.com/favicon.ico",
+        "https://dev.caodaion.com/index.html",
+        "https://dev.caodaion.com/main.0e032f70e2b29c28.js",
+        "https://dev.caodaion.com/manifest.webmanifest",
+        "https://dev.caodaion.com/polyfills.af52e9ba23976ee5.js",
+        "https://dev.caodaion.com/runtime.eab2524573a530c9.js",
+        "https://dev.caodaion.com/styles.ef46db3751d8e999.css"
       ],
       "patterns": []
     },
@@ -34,44 +29,27 @@
         "ignoreVary": true
       },
       "urls": [
-        "https://web-cdttu.github.io/assets/icons/icon-192x192.png",
-        "https://web-cdttu.github.io/assets/icons/icon-256x256.png",
-        "https://web-cdttu.github.io/assets/icons/icon-384x384.png",
-        "https://web-cdttu.github.io/assets/icons/icon-512x512.png",
-        "https://web-cdttu.github.io/assets/images/chuc-sac-khoa-muc.svg",
-        "https://web-cdttu.github.io/assets/images/chuc-viec-khoa-muc.svg",
-        "https://web-cdttu.github.io/assets/images/header-background.png",
-        "https://web-cdttu.github.io/assets/images/red-frame.svg",
-        "https://web-cdttu.github.io/assets/images/tianmen.svg",
-        "https://web-cdttu.github.io/assets/images/tu-si-khoa-muc.svg"
+        "https://dev.caodaion.com/assets/icons/icon-192x192.png",
+        "https://dev.caodaion.com/assets/icons/icon-256x256.png",
+        "https://dev.caodaion.com/assets/icons/icon-384x384.png",
+        "https://dev.caodaion.com/assets/icons/icon-512x512.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "https://web-cdttu.github.io/17.f087e0e97a13465c.js": "da43ac1fc0c3d7371271c2e97b712b14fe38422b",
-    "https://web-cdttu.github.io/262.a4cd86b7afd348bf.js": "5b324d7760a2a6be3b83a1701522a696ecbb3dc1",
-    "https://web-cdttu.github.io/672.d6fd60481256a264.js": "a3020efe968fec5b8da1cc977b31f9f99f7b8883",
-    "https://web-cdttu.github.io/960.c14266454e4a72fb.js": "1435e80e203ae2925ce7a8d8a78c08a7feeccd57",
-    "https://web-cdttu.github.io/assets/icons/icon-192x192.png": "6c28d04e8c85897db44353d12deef1035edbba6e",
-    "https://web-cdttu.github.io/assets/icons/icon-256x256.png": "bc7ccf676e025fc6c353b3d2c2ec6d06a6eed3be",
-    "https://web-cdttu.github.io/assets/icons/icon-384x384.png": "dac524faf2b05ec8f9309931f7194fb5f97e06f6",
-    "https://web-cdttu.github.io/assets/icons/icon-512x512.png": "946081eea5b25aec0e6942d07091664904529ac1",
-    "https://web-cdttu.github.io/assets/images/chuc-sac-khoa-muc.svg": "1811ed6001155550c7494fe69b1817abc1122995",
-    "https://web-cdttu.github.io/assets/images/chuc-viec-khoa-muc.svg": "adee68083384f14f67dda50f7cb67f6ac155029b",
-    "https://web-cdttu.github.io/assets/images/header-background.png": "00d39dbb7c0c98d0903ba0503c4db136c3922a13",
-    "https://web-cdttu.github.io/assets/images/red-frame.svg": "1b57506026d6d638cdff28d5a78606f1a52d233c",
-    "https://web-cdttu.github.io/assets/images/tianmen.svg": "88e0d418119991bd51e6047f04bbe0a0f89cb5fc",
-    "https://web-cdttu.github.io/assets/images/tu-si-khoa-muc.svg": "fe26d13a9a9bb278be2346070c26d1ed1d14f01a",
-    "https://web-cdttu.github.io/common.f20154bd230ee518.js": "a3280aed9554e0d1a20d03020c9a7520c8405e90",
-    "https://web-cdttu.github.io/favicon.ico": "b125295a96e45af33b6a7f4169425b51d992c5f6",
-    "https://web-cdttu.github.io/index.html": "8a4a29d35b9d3030af798d9a2da00eda4de29328",
-    "https://web-cdttu.github.io/main.4201399781722de0.js": "206b994264823c97ca072fb8cd04df65e276f3f6",
-    "https://web-cdttu.github.io/manifest.webmanifest": "e45a0df9578af7cd77b7d8df0c628b85e014e7a0",
-    "https://web-cdttu.github.io/polyfills.b51b8edc601a6e74.js": "eeb3f3c1d4c9bb3b75b2aadb368be7bd21bfa312",
-    "https://web-cdttu.github.io/runtime.a32faa41fd35fe5e.js": "59aeb3241ea43a95931b6bc4111ea86887420bd2",
-    "https://web-cdttu.github.io/styles.64fd7049c6c2b61b.css": "b4265802ed56ace728acd895ba29ac42599bf533"
+    "https://dev.caodaion.com/assets/icons/icon-192x192.png": "6c28d04e8c85897db44353d12deef1035edbba6e",
+    "https://dev.caodaion.com/assets/icons/icon-256x256.png": "bc7ccf676e025fc6c353b3d2c2ec6d06a6eed3be",
+    "https://dev.caodaion.com/assets/icons/icon-384x384.png": "dac524faf2b05ec8f9309931f7194fb5f97e06f6",
+    "https://dev.caodaion.com/assets/icons/icon-512x512.png": "946081eea5b25aec0e6942d07091664904529ac1",
+    "https://dev.caodaion.com/favicon.ico": "b125295a96e45af33b6a7f4169425b51d992c5f6",
+    "https://dev.caodaion.com/index.html": "cb408d9e0e14082803a5582dfcfd8d9aaad58656",
+    "https://dev.caodaion.com/main.0e032f70e2b29c28.js": "95c1a1517c15d723baa6ea1cf9409e6693848ab2",
+    "https://dev.caodaion.com/manifest.webmanifest": "5a2059f5020b76466ed1ef421e446ef5ee1167ea",
+    "https://dev.caodaion.com/polyfills.af52e9ba23976ee5.js": "cf633d91f57ebed0c1177f183e289cee3603245a",
+    "https://dev.caodaion.com/runtime.eab2524573a530c9.js": "d1fccba26a1fa2dc7569af2f1b4d76b9b7a02eab",
+    "https://dev.caodaion.com/styles.ef46db3751d8e999.css": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
   },
   "navigationUrls": [
     {
