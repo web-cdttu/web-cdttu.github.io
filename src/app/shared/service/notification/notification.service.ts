@@ -10,7 +10,7 @@ type Mutable<T> = { -readonly [P in keyof T]: T[P] }
 export class NotificationService {
   readonly notificationWorbook: any;
   readonly sheetUrl = `https://docs.google.com/spreadsheets/d/e/{id}/pub?output=xlsx`
-  readonly sheetId = `2PACX-1vQY3ZvEpbNuqXKuGeuzHolB5Z2J22jIKt42hCfQrVNpr0QGay05-905U1hYfObkIg`
+  readonly sheetId = `2PACX-1vQlDH9tPrnQ8zl1W4Dzgzf2eU_tgYsSTKEBu5DSnGRmbKtg4TNV5zXg051wbNzTAw`
   readonly notificationSettingSheet = 'setting'
   readonly notificationData = <any>{}
   readonly notificationAllList = <any>[]

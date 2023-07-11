@@ -10,7 +10,7 @@ type Mutable<T> = { -readonly [P in keyof T]: T[P] }
 export class NewsService {
   readonly newsWorbook: any;
   readonly sheetUrl = `https://docs.google.com/spreadsheets/d/e/{id}/pub?output=xlsx`
-  readonly sheetId = `2PACX-1vQpmFl1eW-rWzRKMxiSn_xAu4qHpH_NFNgWgtFNmn5Ho97hcPoEV18mTFzSNMT2SA`
+  readonly sheetId = `2PACX-1vTX3a-Z8GG0hWweLX3S36jrC_GQ0Uzhtz_Es1LulCL1jjdCFe878x18iVuMJLtYOg`
   readonly newsSheet = 'news'
   readonly newsData = <any>[]
   isActiveNews = false;
