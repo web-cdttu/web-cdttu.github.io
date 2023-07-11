@@ -53,8 +53,13 @@ export class HomeIntroduceNewsComponent implements OnInit, AfterViewChecked {
                   image: item.thumbnail
                 }
               })
-            this.newsList = newsList.splice(newsList?.length > 7 ? 7 : newsList.length / 2, 7)
-            this.newsSlide = newsList.splice(0, 7)
+            if (newsList?.length > 7) {
+              this.newsList = newsList.splice(newsList?.length > 7 ? 7 : newsList.length / 2, 7)
+              this.newsSlide = newsList.splice(0, 7)
+            } else {
+              this.newsList = newsList
+              this.newsSlide = newsList
+            }
             this.offsetHeight = this.newListContainer?.nativeElement?.offsetHeight
           }
         })

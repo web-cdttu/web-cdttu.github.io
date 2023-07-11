@@ -59,8 +59,13 @@ export class HomeNewsNotificationsComponent implements OnInit, AfterViewChecked 
                   image: item.thumbnail
                 }
               })
-            this.newsSlide = newsList.splice(newsList?.length > 7 ? 7 : newsList.length / 2, 7)
-            this.newsList = newsList.splice(0, 7)
+              if (newsList.length > 7) {
+                this.newsSlide = newsList.splice(newsList?.length > 7 ? 7 : newsList.length / 2, 7)
+                this.newsList = newsList.splice(0, 7)
+              } else {
+                this.newsSlide = newsList
+                this.newsList = newsList
+              }
             this.offsetHeight = this.newListContainer?.nativeElement?.offsetHeight
           }
         })
@@ -88,7 +93,11 @@ export class HomeNewsNotificationsComponent implements OnInit, AfterViewChecked 
                   image: item?.data.thumbnail
                 }
               })
-            this.notificationList = notificationList.splice(0, 7)
+            if (notificationList?.length > 7) {
+              this.notificationList = notificationList.splice(0, 7)
+            } else {
+              this.notificationList = notificationList
+            }
             this.offsetHeight = this.newListContainer?.nativeElement?.offsetHeight
           }
         })

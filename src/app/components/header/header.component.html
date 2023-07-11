@@ -106,7 +106,7 @@
       <li
         class="w-full text-center relative navbar-item cursor-pointer text-[white]"
         *ngFor="let item of navbar; let index = index"
-        [ngClass]="{ border: item.show, active: activePath && activePath.includes(item?.path) }"
+        [ngClass]="{ border: item.show, active: activePathIndex === index }"
       >
         <div
           class="flex justify-between items-center"

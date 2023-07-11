@@ -11,6 +11,7 @@ export class HeaderComponent {
   isShowMenu = false;
   navbar = MENU
   activePath = '';
+  activePathIndex = 0;
   searchText = '';
   isShowAccountMenu = false
 
@@ -33,6 +34,8 @@ export class HeaderComponent {
     this.router.events.subscribe((res: any) => {
       this.activePath = res?.routerEvent?.url
       this.searchText = ''
+      const foundIndex = this.navbar.indexOf(this.navbar.find((item: any) => item.path == '/' + res?.routerEvent?.url?.split('/')[1]))
+      this.activePathIndex =  foundIndex > 0 ? foundIndex : 0
     })
   }
 
