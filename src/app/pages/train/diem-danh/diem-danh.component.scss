@@ -1,0 +1,21 @@
+::ng-deep {
+  .mat-mdc-focus-indicator {
+    position: relative;
+  }
+  .subjectTabGroup {
+    .mat-mdc-tab-header {
+      position: sticky;
+      top: 100px;
+      background-color: #ffffff;
+      z-index: 2;
+    }
+  }
+  .timeTabGroup {
+    .mat-mdc-tab-header {
+      position: sticky;
+      top: 0;
+      background-color: #ffffff;
+      z-index: 2;
+    }
+  }
+}

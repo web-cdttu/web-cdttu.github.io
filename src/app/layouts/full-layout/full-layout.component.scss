@@ -1,0 +1,9 @@
+::ng-deep {
+  app-root {
+    display: flex;
+  }
+  app-full-layout {
+    position: relative;
+    flex: 0 100%;
+  }
+}

@@ -1,0 +1,92 @@
+<mat-tab-group
+  (selectedTabChange)="onChangeSubjectTab($event)"
+  class="subjectTabGroup"
+>
+  <ng-container *ngFor="let item of subjectList">
+    <mat-tab [label]="item.na">
+      <h2 class="text-3xl">{{ item.na }}</h2>
+      <mat-tab-group
+        (selectedTabChange)="onChangeTimeTab($event)"
+        class="timeTabGroup"
+      >
+        <ng-container *ngFor="let item of checkInTimeList">
+          <mat-tab [label]="(item | date : 'dd/MM/yyyy HH:mm:ss') || item">
+            <h3 class="text-2xl">{{ item | date : "dd/MM/yyyy HH:mm:ss" }}</h3>
+            <p>
+              <strong>Đã điểm danh:</strong> {{ count.checkedIn }}/{{
+                count.total
+              }}
+            </p>
+            <ng-container *ngIf="isShowTable">
+              <!-- <mat-form-field class="w-full" appearance="outline">
+              <mat-label>Tìm kiếm học viên theo Mã, Tên, năm sinh</mat-label>
+              <input
+                matInput
+                (keyup)="applyFilter($event)"
+                placeholder="Tìm kiếm học viên theo Mã, Tên, năm sinh"
+                #input
+              />
+            </mat-form-field> -->
+              <table
+                *ngIf="viewPortMode === 'desktop'"
+                mat-table
+                [dataSource]="dataSource"
+                multiTemplateDataRows
+                class="mat-elevation-z8"
+              >
+                <ng-container
+                  matColumnDef="{{ column }}"
+                  *ngFor="let column of displayedColumns"
+                  sticky
+                >
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{
+                      column === "id"
+                        ? "Mã học viên"
+                        : column === "na"
+                        ? "Họ và Tên"
+                        : column === "bi"
+                        ? "Năm sinh"
+                        : column === "checkedIn"
+                        ? "Điểm danh"
+                        : ""
+                    }}
+                  </th>
+                  <td
+                    mat-cell
+                    *matCellDef="let element"
+                    [ngClass]="{
+                      '!bg-[#34a853]': element['checkedIn'] > 0,
+                      '!text-[#FFFFFF]': element['checkedIn'] > 0
+                    }"
+                  >
+                    <ng-container *ngIf="column === 'checkedIn'">
+                      {{
+                        element[column] === 0
+                          ? "Vắng"
+                          : element[column] === undefined
+                          ? "Chưa cập nhật"
+                          : (element[column] | date : "dd/MM/yyyy HH:mm:ss")
+                      }}
+                    </ng-container>
+                    <ng-container *ngIf="column !== 'checkedIn'">
+                      {{ element[column] }}
+                    </ng-container>
+                  </td>
+                </ng-container>
+                <tr
+                  mat-header-row
+                  *matHeaderRowDef="displayedColumns; sticky: true"
+                ></tr>
+                <tr
+                  mat-row
+                  *matRowDef="let row; columns: displayedColumns"
+                ></tr>
+              </table>
+            </ng-container>
+          </mat-tab>
+        </ng-container>
+      </mat-tab-group>
+    </mat-tab>
+  </ng-container>
+</mat-tab-group>

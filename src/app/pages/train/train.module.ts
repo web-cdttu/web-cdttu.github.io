@@ -9,6 +9,13 @@ import { TuSiKhoaMucComponent } from './tu-si-khoa-muc/tu-si-khoa-muc.component'
 import { ChucViecKhoaMucComponent } from './chuc-viec-khoa-muc/chuc-viec-khoa-muc.component';
 import { ChucSacKhoaMucComponent } from './chuc-sac-khoa-muc/chuc-sac-khoa-muc.component';
 import { TraCuuVanBangBangDiemComponent } from './tra-cuu-van-bang-bang-diem/tra-cuu-van-bang-bang-diem.component';
+import { DiemDanhComponent } from './diem-danh/diem-danh.component';
+import { DiemDanhDetailsComponent } from './diem-danh/diem-danh-details/diem-danh-details.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -18,12 +25,19 @@ import { TraCuuVanBangBangDiemComponent } from './tra-cuu-van-bang-bang-diem/tra
     TuSiKhoaMucComponent,
     ChucViecKhoaMucComponent,
     ChucSacKhoaMucComponent,
-    TraCuuVanBangBangDiemComponent
+    TraCuuVanBangBangDiemComponent,
+    DiemDanhComponent,
+    DiemDanhDetailsComponent
   ],
   imports: [
     CommonModule,
     TrainRoutingModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    MatTabsModule,
+    MatTableModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ]
 })
 export class TrainModule { }
