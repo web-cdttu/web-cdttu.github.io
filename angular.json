@@ -114,7 +114,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "https://web-cdttu.github.io"
+            "baseHref": "https://cdttu-web.web.app"
           }
         }
       }

@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/web-cdttu.github.io",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
