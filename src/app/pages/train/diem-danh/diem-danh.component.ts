@@ -25,6 +25,7 @@ export class DiemDanhComponent implements OnInit, AfterViewChecked {
   viewPortMode: any;
   studentSettings = <any>[]
   dataSource = <any>[]
+  dataTable = <any>[]
   count = <any>[]
   addNew = <any>{}
   checkInSession = <any>{}
@@ -175,6 +176,8 @@ export class DiemDanhComponent implements OnInit, AfterViewChecked {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue?.trim()?.toLowerCase();
+    if (this.viewPortMode === 'desktop') {
+      this.dataSource.filter = filterValue?.trim()?.toLowerCase();
+    }
   }
 }

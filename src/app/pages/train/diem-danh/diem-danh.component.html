@@ -28,6 +28,7 @@
                 />
               </mat-form-field>
               <table
+                *ngIf="viewPortMode === 'desktop'"
                 mat-table
                 [dataSource]="dataSource"
                 multiTemplateDataRows
@@ -83,53 +84,56 @@
                 ></tr>
               </table>
             </ng-container>
-            <mat-list *ngIf="viewPortMode === 'mobile'">
-              <ng-container *ngFor="let item of studentSettings">
-                <mat-list-item
-                class="!py-4"
-                  [ngClass]="{
-                    '!bg-[#34a853]': item['checkedIn'] > 0,
-                    '!text-[#FFFFFF]': item['checkedIn'] > 0
-                  }"
-                >
-                  <span
+            <ng-container *ngIf="viewPortMode === 'mobile'">
+              <mat-list>
+                <ng-container *ngFor="let item of studentSettings">
+                  <mat-list-item
+                    class="!py-4"
                     [ngClass]="{
+                      '!bg-[#34a853]': item['checkedIn'] > 0,
                       '!text-[#FFFFFF]': item['checkedIn'] > 0
                     }"
-                    matListItemTitle
-                    >{{ item?.na }}</span
                   >
-                  <span
-                    [ngClass]="{
-                      '!text-[#FFFFFF]': item['checkedIn'] > 0
-                    }"
-                    matListItemLine
-                    >{{ item?.id }}</span
-                  >
-                  <span
-                    [ngClass]="{
-                      '!text-[#FFFFFF]': item['checkedIn'] > 0
-                    }"
-                    matListItemLine
-                    >{{ item?.bi }}</span
-                  >
-                  <span
-                    [ngClass]="{
-                      '!text-[#FFFFFF]': item['checkedIn'] > 0
-                    }"
-                    matListItemLine
-                    >Điểm danh: {{
-                      item["checkedIn"] === 0
-                        ? "Vắng"
-                        : item["checkedIn"] === undefined
-                        ? "Chưa cập nhật"
-                        : (item["checkedIn"] | date : "dd/MM/yyyy HH:mm:ss")
-                    }}</span
-                  >
-                </mat-list-item>
-                <mat-divider matListItemLine class="h-0"></mat-divider>
-              </ng-container>
-            </mat-list>
+                    <span
+                      [ngClass]="{
+                        '!text-[#FFFFFF]': item['checkedIn'] > 0
+                      }"
+                      matListItemTitle
+                      >{{ item?.na }}</span
+                    >
+                    <span
+                      [ngClass]="{
+                        '!text-[#FFFFFF]': item['checkedIn'] > 0
+                      }"
+                      matListItemLine
+                      >{{ item?.id }}</span
+                    >
+                    <span
+                      [ngClass]="{
+                        '!text-[#FFFFFF]': item['checkedIn'] > 0
+                      }"
+                      matListItemLine
+                      >{{ item?.bi }}</span
+                    >
+                    <span
+                      [ngClass]="{
+                        '!text-[#FFFFFF]': item['checkedIn'] > 0
+                      }"
+                      matListItemLine
+                      >Điểm danh:
+                      {{
+                        item["checkedIn"] === 0
+                          ? "Vắng"
+                          : item["checkedIn"] === undefined
+                          ? "Chưa cập nhật"
+                          : (item["checkedIn"] | date : "dd/MM/yyyy HH:mm:ss")
+                      }}</span
+                    >
+                  </mat-list-item>
+                  <mat-divider matListItemLine class="h-0"></mat-divider>
+                </ng-container>
+              </mat-list>
+            </ng-container>
           </mat-tab>
         </ng-container>
       </mat-tab-group>
