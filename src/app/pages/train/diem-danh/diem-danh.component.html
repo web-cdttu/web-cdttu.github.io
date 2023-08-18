@@ -17,18 +17,17 @@
                 count.total
               }}
             </p>
-            <ng-container *ngIf="isShowTable">
-              <!-- <mat-form-field class="w-full" appearance="outline">
-              <mat-label>Tìm kiếm học viên theo Mã, Tên, năm sinh</mat-label>
-              <input
-                matInput
-                (keyup)="applyFilter($event)"
-                placeholder="Tìm kiếm học viên theo Mã, Tên, năm sinh"
-                #input
-              />
-            </mat-form-field> -->
+            <ng-container *ngIf="isShowTable && viewPortMode === 'desktop'">
+              <mat-form-field class="w-full">
+                <mat-label>Tìm kiếm học viên theo Mã, Tên, năm sinh</mat-label>
+                <input
+                  matInput
+                  (keyup)="applyFilter($event)"
+                  placeholder="Tìm kiếm học viên theo Mã, Tên, năm sinh"
+                  #input
+                />
+              </mat-form-field>
               <table
-                *ngIf="viewPortMode === 'desktop'"
                 mat-table
                 [dataSource]="dataSource"
                 multiTemplateDataRows
@@ -84,6 +83,53 @@
                 ></tr>
               </table>
             </ng-container>
+            <mat-list *ngIf="viewPortMode === 'mobile'">
+              <ng-container *ngFor="let item of studentSettings">
+                <mat-list-item
+                class="!py-4"
+                  [ngClass]="{
+                    '!bg-[#34a853]': item['checkedIn'] > 0,
+                    '!text-[#FFFFFF]': item['checkedIn'] > 0
+                  }"
+                >
+                  <span
+                    [ngClass]="{
+                      '!text-[#FFFFFF]': item['checkedIn'] > 0
+                    }"
+                    matListItemTitle
+                    >{{ item?.na }}</span
+                  >
+                  <span
+                    [ngClass]="{
+                      '!text-[#FFFFFF]': item['checkedIn'] > 0
+                    }"
+                    matListItemLine
+                    >{{ item?.id }}</span
+                  >
+                  <span
+                    [ngClass]="{
+                      '!text-[#FFFFFF]': item['checkedIn'] > 0
+                    }"
+                    matListItemLine
+                    >{{ item?.bi }}</span
+                  >
+                  <span
+                    [ngClass]="{
+                      '!text-[#FFFFFF]': item['checkedIn'] > 0
+                    }"
+                    matListItemLine
+                    >Điểm danh: {{
+                      item["checkedIn"] === 0
+                        ? "Vắng"
+                        : item["checkedIn"] === undefined
+                        ? "Chưa cập nhật"
+                        : (item["checkedIn"] | date : "dd/MM/yyyy HH:mm:ss")
+                    }}</span
+                  >
+                </mat-list-item>
+                <mat-divider matListItemLine class="h-0"></mat-divider>
+              </ng-container>
+            </mat-list>
           </mat-tab>
         </ng-container>
       </mat-tab-group>

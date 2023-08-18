@@ -8,6 +8,9 @@
       top: 100px;
       background-color: #ffffff;
       z-index: 2;
+      @media screen {
+        top: 128px;
+      }
     }
   }
   .timeTabGroup {

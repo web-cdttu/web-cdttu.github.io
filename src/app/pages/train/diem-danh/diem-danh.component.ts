@@ -87,7 +87,6 @@ export class DiemDanhComponent implements OnInit, AfterViewChecked {
               this.checkInSession['subject'] = this.subjectList[0]['id']
               this.getCheckInTimeList()
             }
-            console.log(this.subjectList);
           }
         })
     } catch (error) {
@@ -117,8 +116,6 @@ export class DiemDanhComponent implements OnInit, AfterViewChecked {
               }
             }
           }
-          console.log(this.checkInTimeList);
-
         })
     } catch (error) {
       console.error(error);
