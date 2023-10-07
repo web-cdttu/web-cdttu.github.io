@@ -116,7 +116,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "https://cdttu-web.web.app"
+            "baseHref": "https://cdttu.edu.vn/"
           }
         }
       }
