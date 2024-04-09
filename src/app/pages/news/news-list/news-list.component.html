@@ -1,18 +1,11 @@
-<app-breadcrumb
-  [breadcrumb]="breadcrumb"
-  [align]="'end'"
-></app-breadcrumb>
+<app-breadcrumb [breadcrumb]="breadcrumb" [align]="'end'"></app-breadcrumb>
 <div class="p-3">
   <ng-container *ngIf="newsList[0]?.title">
-    <app-news-list-item
-      *ngFor="let item of newsList"
-      [data]="item"
-      [routerLink]="item?.path"
-      >{{ item?.title }}</app-news-list-item
-    >
+    <app-news-list-item *ngFor="let item of newsList" [data]="item" [routerLink]="item?.path">{{ item?.title
+      }}</app-news-list-item>
   </ng-container>
 
   <ng-container *ngIf="!newsList[0]?.title">
-    <app-news-list-item *ngFor="let item of newsList"></app-news-list-item
-  ></ng-container>
+    <app-news-list-item *ngFor="let item of newsList"></app-news-list-item>
+  </ng-container>
 </div>
