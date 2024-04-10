@@ -32,10 +32,6 @@ const routes: Routes = [
       {
         path: 'dao-tao',
         loadChildren: () => import('./pages/train/train.module').then((m) => m.TrainModule)
-      },
-      {
-        path: 'phong-tuyen-sinh',
-        loadChildren: () => import('./pages/phong-tuyen-sinh/phong-tuyen-sinh.module').then((m) => m.PhongTuyenSinhModule);
       }
     ]
   },
