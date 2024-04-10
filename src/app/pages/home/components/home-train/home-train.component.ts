@@ -7,5 +7,6 @@ import { MENU } from 'src/app/shared/constant/menu.constant';
   styleUrls: ['./home-train.component.scss']
 })
 export class HomeTrainComponent {
-  trains = MENU?.find((item: any) => item.path == '/dao-tao')?.children?.filter((item: any) => item.path !== 'tra-cuu-van-bang-bang-diem')
+  trains = MENU?.find((item: any) => item.path == '/dao-tao')?.children
+    ?.filter((item: any) => item.path !== 'tra-cuu-van-bang-bang-diem' && item.path !== 'diem-danh')
 }
