@@ -137,17 +137,6 @@ export class DiemDanhComponent implements OnInit, AfterViewChecked {
           if (res.code == 200) {
             this.studentSetingGetting = false
             const data = res.data
-            const localStorageAttendance = JSON.parse(localStorage.getItem('attendance') || '[]')
-            const foundSubject = localStorageAttendance.find((item: any) => item.subject == this.checkInSession['subject'])
-            if (foundSubject) {
-              const foundAttendance = foundSubject[this.checkInSession['time']]
-              if (foundAttendance?.length > 0) {
-                foundAttendance.forEach((fa: any) => {
-                  const foundIndex = data.indexOf(data.find((item: any) => item.id == fa.id))
-                  data[foundIndex]['checkedIn'] = fa.checkedIn
-                })
-              }
-            }
             this.studentSettings = data
             this.count = {
               checkedIn: this.studentSettings?.filter((item: any) => item?.checkedIn > 0)?.length,
@@ -164,13 +153,11 @@ export class DiemDanhComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  onChangeSubjectTab(event: any) {
-    this.checkInSession['subject'] = this.subjectList[event.index]['id']
+  onChangeSubjectTab(event: any) {    
     this.getCheckInTimeList()
   }
 
-  onChangeTimeTab(event: any) {
-    this.checkInSession['time'] = this.checkInTimeList[event.index]
+  onChangeTimeTab(event: any) {    
     this.getStudentSettings()
   }
 

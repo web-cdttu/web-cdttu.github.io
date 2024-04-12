@@ -49,7 +49,6 @@ export class AdmissionsOfficeService {
       let studentSetting = this.admissionsOfficeWorbook.Sheets[querySheet]
       let data = this.decodeRawSheetData(studentSetting).filter((item: any) => !!item.id)
       if (data?.length === 0) {
-        console.log(data);
         studentSetting = this.admissionsOfficeWorbook.Sheets[this.settingStudentSheet]
         data = this.decodeRawSheetData(studentSetting).filter((item: any) => !!item.id)
       }

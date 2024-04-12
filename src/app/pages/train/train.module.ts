@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {MatListModule} from '@angular/material/list';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule
   ]
 })
 export class TrainModule { }
