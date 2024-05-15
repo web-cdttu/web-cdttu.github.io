@@ -12,6 +12,13 @@ import { SwiperComponent } from "swiper/angular";
 export class BannerComponent {
   @Input() banner = <any>[]
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
+
+  imageLoaded: boolean[] = [];
+
+  Load(index: number){
+    this.imageLoaded[index] = true;
+  }
+
   slideNext() {
     this.swiper?.swiperRef.slideNext(100);
   }
