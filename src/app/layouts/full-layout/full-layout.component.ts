@@ -43,20 +43,16 @@ export class FullLayoutComponent implements OnInit, AfterViewChecked {
     if (!this.swUpdate.isEnabled) {
       console.log('Not enable to update');
       return;
-    }
+    } 
+
+    // event.type === 'VERSION_READY'  sử dụng thư viện @angular/service-worker
     this.swUpdate.versionUpdates.subscribe((event: any) => {
-      console.log(`current`, event.current, `available`, event.available);
-      if (
-        confirm(
-          'Phiên bản mới đã sẵn sàng, hãy đồng ý để cập nhật phiên bản mới ngay!!'
-        )
-      ) {
+      console.log(`current`, event.previous ? event.previous : event.current, `available`, event.current);
+      if (event.type === 'VERSION_READY' && confirm('Phiên bản mới đã sẵn sàng, hãy đồng ý để cập nhật phiên bản mới ngay!!')) {
         this.swUpdate.activateUpdate().then(() => location.reload());
       }
     });
-    this.swUpdate.versionUpdates.subscribe((event: any) => {
-      console.log(`current`, event.previous, `available`, event.current);
-    });
+    
   }
 
   autoCheckForUpdate() {
