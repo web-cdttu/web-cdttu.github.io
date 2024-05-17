@@ -10,7 +10,7 @@
           </div>
           <div *ngFor="let item of menu" class="w-full h-auto relative cursor-pointer menu-item"
             [routerLink]="'/tin-tuc/' + item?.path" [routerLinkActive]="'active'">
-            <div class="py-4 flex justify-center items-center">
+            <div class="py-4 flex p-7 items-center">
               {{ item?.label }}
             </div>
           </div>

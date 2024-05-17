@@ -10,7 +10,7 @@
           </div>
           <div *ngFor="let item of menu" class="w-full h-auto relative cursor-pointer menu-item"
             [routerLink]="'/gioi-thieu/' + item?.path" [routerLinkActive]="'active'">
-            <div class="py-4 flex justify-center items-center">
+            <div class="py-4 flex items-center p-7">
               {{ item?.label }}
             </div>
           </div>
