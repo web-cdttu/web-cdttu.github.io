@@ -3,7 +3,7 @@
     <ng-template swiperSlide *ngFor="let item of banner let i = index">
       <div class="h-full w-full relative">
         <div *ngIf="!imageLoaded[i]" class="h-full w-full flex items-center justify-center bg-gray-20">
-          This is the image loading...
+          Hình ảnh đang được tải....
         </div>
         <div class="h-full w-full">
           <img [src]="item?.image" [alt]="item?.image" class="h-full w-full object-cover" (load)="Load(i)"  [class.hidden]="!imageLoaded[i]" />
