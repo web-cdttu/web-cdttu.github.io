@@ -101,7 +101,7 @@ export class DiemDanhComponent implements OnInit, AfterViewChecked {
       this.admissionsOfficeService.getSubjectTime(this.checkInSession['subject'])
         .subscribe((res: any) => {
           if (res.code == 200) {
-            this.checkInTimeList = res.data;
+            this.checkInTimeList = res.data.reverse();
             if (this.checkInTimeList.length == 1) {
               this.checkInSession['time'] = this.checkInTimeList[0]
               this.getStudentSettings()
