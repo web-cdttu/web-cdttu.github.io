@@ -68,7 +68,7 @@ export class NewsService {
             item.date = new Date(item.date).getTime()
           }
           if (item?.thumbnailType == 'googleDrive') {
-            item.thumbnail = `https://lh3.google.com/u/0/d/${item.thumbnail}`
+            item.thumbnail = `https://lh3.googleusercontent.com/fife/${item.thumbnail}`
           }
         })
         const response = {
