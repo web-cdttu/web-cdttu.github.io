@@ -1,9 +1,12 @@
 <div class="container">
-  <div class="mt-5 w-full border text-3xl rounded-full overflow-hidden">
+  <!-- <div class="mt-5 w-full border text-3xl rounded-full overflow-hidden">
     <input type="text" (input)="search()" placeholder="Tìm kiếm" class="px-10 py-5 w-full outline-none"
       [(ngModel)]="searchText" />
+  </div> -->
+  <div class="text-3xl my-7">Kết quả tìm kiếm</div>
+  <div class="my-4" *ngIf="menu?.length === 0">
+    <div class="text-xl font-semibold text-center">Không tồn tại thông tin bạn cần tìm!</div>
   </div>
-  <div class="text-4xl my-5">Kết quả tìm kiếm</div>
   <div class="my-4" *ngIf="menu?.length > 0">
     <div class="text-3xl font-semibold">Trang:</div>
     <div class="list-none">
