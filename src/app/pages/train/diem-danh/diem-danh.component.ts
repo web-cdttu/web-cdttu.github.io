@@ -2,6 +2,9 @@ import { AfterViewChecked, ChangeDetectorRef, Component, OnInit, ViewChild } fro
 import { MatTableDataSource } from '@angular/material/table';
 import { AdmissionsOfficeService } from 'src/app/shared/service/admissions-office/admissions-office.service';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { ActivatedRoute } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-diem-danh',
@@ -37,6 +40,7 @@ export class DiemDanhComponent implements OnInit, AfterViewChecked {
     private cd: ChangeDetectorRef,
     private breakpointObserver: BreakpointObserver,
     private admissionsOfficeService: AdmissionsOfficeService,
+    private activatedRoute: ActivatedRoute,
   ) {
   }
 
@@ -50,6 +54,15 @@ export class DiemDanhComponent implements OnInit, AfterViewChecked {
           this.viewPortMode = 'desktop';
         }
       });
+      this.activatedRoute.queryParams.subscribe((params: any) => {
+        this.checkInSession['subject'] = params['mh'];
+      });
+
+      this.activatedRoute.queryParams.subscribe((params: any) => {
+        this.checkInSession['time'] = params['gh'];
+
+    });
+
     this.getSubject()
   }
 
@@ -68,22 +81,6 @@ export class DiemDanhComponent implements OnInit, AfterViewChecked {
         .subscribe((res: any) => {
           if (res.code == 200) {
             this.subjectList = res.data;
-            const localStorageAttendance = JSON.parse(localStorage.getItem('attendance') || '[]')?.map((item: any) => {
-              return {
-                id: item?.subject,
-                na: item?.name
-              }
-            })
-            const mergeSubject = [...new Set(localStorageAttendance.map((item: any) => item.id).concat(this.subjectList.map((item: any) => item.id)))]
-            mergeSubject.forEach((item: any) => {
-              const foundRemote = this.subjectList.find((sl: any) => sl.id == item)
-              if (!foundRemote) {
-                const foundLocal = localStorageAttendance.find((sl: any) => sl.id == item)
-                if (foundLocal) {
-                  this.subjectList.push(foundLocal)
-                }
-              }
-            })
             if (this.subjectList.length == 1) {
               this.checkInSession['subject'] = this.subjectList[0]['id']
               this.getCheckInTimeList()
@@ -106,18 +103,9 @@ export class DiemDanhComponent implements OnInit, AfterViewChecked {
               this.checkInSession['time'] = this.checkInTimeList[0]
               this.getStudentSettings()
             }
-          } else {
-            const localStorageAttendance = JSON.parse(localStorage.getItem('attendance') || '[]')
-            const currentSubject = localStorageAttendance.find((item: any) => item.subject == this.checkInSession.subject)
-            if (currentSubject) {
-              this.checkInTimeList = Object.keys(currentSubject)?.filter((item: any) => item !== 'subject' && item !== 'name')
-              if (this.checkInTimeList.length == 1) {
-                this.checkInSession['time'] = this.checkInTimeList[0]
-                this.getStudentSettings()
-              }
-            }
-          }
-        })
+          } 
+        }
+      )
     } catch (error) {
       console.error(error);
     }
