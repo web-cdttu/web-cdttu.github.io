@@ -6,7 +6,6 @@ import { SETTING } from 'src/app/shared/constant/settings.constant';
 import { CommonService } from 'src/app/shared/service/commonService/common.service';
 import { NewsService } from 'src/app/shared/service/news/news.service';
 import { NotificationService } from 'src/app/shared/service/notification/notification.service';
-import { AdmissionsOfficeService } from 'src/app/shared/service/admissions-office/admissions-office.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',

@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './diem-danh.component.html',
   styleUrls: ['./diem-danh.component.scss']
 })
-export class DiemDanhComponent implements OnInit, AfterViewChecked {
+export class DiemDanhComponent implements OnInit {
 
   durationInSeconds = 3;
   journeyUser: any = null;
@@ -35,6 +35,7 @@ export class DiemDanhComponent implements OnInit, AfterViewChecked {
   subjectList = <any>[]
   checkInTimeList = <any>[]
   displayedColumns = <any>[]
+  addmissionWorkbook: any;
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -62,24 +63,29 @@ export class DiemDanhComponent implements OnInit, AfterViewChecked {
         this.checkInSession['time'] = params['gh'];
 
     });
-
-    this.getSubject()
+    this.fetchAddmissionData()
   }
 
-  ngAfterViewChecked(): void {
-    this.cd.detectChanges()
-    setTimeout(() => {
-      if (this.admissionsOfficeService.isActiveAdmissionOffice && !this.subjectList[0]?.id) {
+
+  fetchAddmissionData() {
+    this.admissionsOfficeService.fetchAddmissionData().subscribe({
+      next: (res: any) => {
+        this.addmissionWorkbook = res.data
         this.getSubject()
+      },
+      error(err) {
+          console.log(err);          
+      },
+      complete: () => {
+        console.info('complete');
       }
     })
   }
-
   getSubject() {
     try {
       this.admissionsOfficeService.getSubject()
         .subscribe((res: any) => {
-          if (res.code == 200) {
+          if (res.status == 200) {
             this.subjectList = res.data;
             if (this.subjectList.length == 1) {
               this.checkInSession['subject'] = this.subjectList[0]['id']
@@ -97,7 +103,7 @@ export class DiemDanhComponent implements OnInit, AfterViewChecked {
       this.checkInTimeList = []
       this.admissionsOfficeService.getSubjectTime(this.checkInSession['subject'])
         .subscribe((res: any) => {
-          if (res.code == 200) {
+          if (res.status == 200) {
             this.checkInTimeList = res.data.reverse();
             if (this.checkInTimeList.length == 1) {
               this.checkInSession['time'] = this.checkInTimeList[0]
@@ -122,7 +128,7 @@ export class DiemDanhComponent implements OnInit, AfterViewChecked {
       }
       this.admissionsOfficeService.getStudentSettings(request)
         .subscribe((res: any) => {
-          if (res.code == 200) {
+          if (res.status == 200) {
             this.studentSetingGetting = false
             const data = res.data
             this.studentSettings = data

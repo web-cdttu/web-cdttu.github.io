@@ -7,8 +7,7 @@
 <mat-form-field class="w-full" *ngIf="checkInTimeList?.length > 0">
   <mat-label>Chọn giờ học</mat-label>
   <mat-select (selectionChange)="onChangeTimeTab($event)" [(ngModel)]="checkInSession['time']">
-    <mat-option *ngFor="let item of checkInTimeList" [value]="item">{{ (item | date : 'dd/MM/yyyy HH:mm:ss')
-      }}</mat-option>
+    <mat-option *ngFor="let item of checkInTimeList" [value]="item">{{ item }}</mat-option>
   </mat-select>
 </mat-form-field>
 
