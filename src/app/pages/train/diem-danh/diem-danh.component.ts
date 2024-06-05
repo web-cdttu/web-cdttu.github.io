@@ -60,9 +60,10 @@ export class DiemDanhComponent implements OnInit {
       });
 
       this.activatedRoute.queryParams.subscribe((params: any) => {
-        this.checkInSession['time'] = params['gh'];
-
+        this.checkInSession['time'] = decodeURIComponent(params['gh']);
+        console.log(decodeURIComponent(params['gh']));
     });
+
     this.fetchAddmissionData()
   }
 
@@ -105,8 +106,11 @@ export class DiemDanhComponent implements OnInit {
         .subscribe((res: any) => {
           if (res.status == 200) {
             this.checkInTimeList = res.data.reverse();
+            console.log(this.checkInTimeList);
             if (this.checkInTimeList.length == 1) {
               this.checkInSession['time'] = this.checkInTimeList[0]
+            } 
+            if (this.checkInSession['time']){
               this.getStudentSettings()
             }
           } 
