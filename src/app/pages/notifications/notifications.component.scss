@@ -1,0 +1,11 @@
+.menu-item {
+    background: url("/assets/images/brush-marks-circle.png") no-repeat left center;
+    background-size: 16px;
+    border-bottom: 1px dashed #000000;
+
+    &.active {
+        background: url("/assets/images/brush-marks-circle-active.png") no-repeat left center;
+        background-size: 16px;
+        color: red;
+    }
+}

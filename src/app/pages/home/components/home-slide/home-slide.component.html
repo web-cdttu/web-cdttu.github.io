@@ -1,0 +1,70 @@
+<div class="h-full banner w-full relative" *ngIf="slide?.length > 0">
+  <swiper
+    #swiper
+    class="h-full w-full"
+    [loop]="true"
+    [autoplay]="{ delay: 5000 }"
+  >
+    <ng-template swiperSlide *ngFor="let item of slide">
+      <div
+        class="h-full w-full relative cursor-pointer"
+        [routerLink]="item?.path"
+      >
+        <div class="absolute top-0 right-0 bottom-0 left-0 flex items-end">
+          <div class="p-3 bg-[black] w-full">
+            <div class="w-2/3">
+              <div class="truncate text-[white]">
+                {{ item?.title }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <img
+          [src]="item?.image"
+          [alt]="item?.image"
+          class="h-full w-full object-cover"
+        />
+      </div>
+    </ng-template>
+  </swiper>
+  <div class="absolute bottom-1 right-0 z-10">
+    <button
+      class="shadow h-[20px] w-[20px] rounded-full bg-[white] text-center mx-3"
+      (click)="slidePrev()"
+      [ariaLabel]="'slidePrev'"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 19.5L8.25 12l7.5-7.5"
+        />
+      </svg>
+    </button>
+    <button
+      class="shadow h-[20px] w-[20px] rounded-full bg-[white] text-center mx-3"
+      (click)="slideNext()"
+      [ariaLabel]="'slideNext'"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M8.25 4.5l7.5 7.5-7.5 7.5"
+        />
+      </svg>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+::ng-deep {
+  app-root {
+    display: flex;
+    flex-direction: column;
+  }
+  app-full-layout {
+    position: relative;
+    flex: 0 100%;
+  }
+}

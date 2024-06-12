@@ -1,0 +1,37 @@
+<div class="container">
+  <!-- <div class="mt-5 w-full border text-3xl rounded-full overflow-hidden">
+    <input type="text" (input)="search()" placeholder="Tìm kiếm" class="px-10 py-5 w-full outline-none"
+      [(ngModel)]="searchText" />
+  </div> -->
+  <div class="text-3xl my-7">Kết quả tìm kiếm</div>
+  <div class="my-4" *ngIf="menu?.length === 0">
+    <div class="text-xl font-semibold text-center">Không tồn tại thông tin bạn cần tìm!</div>
+  </div>
+  <div class="my-4" *ngIf="menu?.length > 0">
+    <div class="text-3xl font-semibold">Trang:</div>
+    <div class="list-none">
+      <div class="list-item my-3" *ngFor="let item of menu">
+        <a [routerLink]="item.path">- {{ item?.label }} <code>{{ item.path }}</code></a>
+        <div class="ml-3" *ngFor="let children of item?.children">
+          <a [routerLink]="item.path + '/' + children.path">- {{ children?.label }} <code>{{ children.path }}</code></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="my-4" *ngIf="foundNews?.length > 0">
+    <div class="text-3xl font-semibold">Tin tức:</div>
+    <div class="list-none">
+      <div class="list-item my-3" *ngFor="let item of foundNews">
+        <a [routerLink]="item.path">- {{ item?.title }} <code>{{ item.path }}</code></a>
+      </div>
+    </div>
+  </div>
+  <div class="my-4" *ngIf="foundNotifications?.length > 0">
+    <div class="text-3xl font-semibold">Thông báo:</div>
+    <div class="list-none">
+      <div class="list-item my-3" *ngFor="let item of foundNotifications">
+        <a [routerLink]="item.path">- {{ item?.title }} <code>{{ item.path }}</code></a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<mat-form-field class="w-full">
+  <mat-label>Chọn môn học</mat-label>
+  <mat-select (selectionChange)="onChangeSubjectTab($event)" [(ngModel)]="checkInSession['subject']">
+    <mat-option *ngFor="let item of subjectList" [value]="item.id">{{ item.na }}</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field class="w-full" *ngIf="checkInTimeList?.length > 0">
+  <mat-label>Chọn giờ học</mat-label>
+  <mat-select (selectionChange)="onChangeTimeTab($event)" [(ngModel)]="checkInSession['time']">
+    <mat-option *ngFor="let item of checkInTimeList" [value]="item">{{ item }}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<ng-container *ngIf="isShowTable && viewPortMode === 'desktop'">
+  <mat-form-field class="w-full">
+    <mat-label>Tìm kiếm học viên theo Mã, Tên, năm sinh</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Tìm kiếm học viên theo Mã, Tên, năm sinh" #input />
+  </mat-form-field>
+  <table *ngIf="viewPortMode === 'desktop'" mat-table [dataSource]="dataSource" multiTemplateDataRows
+    class="mat-elevation-z8">
+    <ng-container matColumnDef="{{ column }}" *ngFor="let column of displayedColumns" sticky>
+      <th mat-header-cell *matHeaderCellDef>
+        {{
+        column === "id"
+        ? "Mã học viên"
+        : column === "na"
+        ? "Họ và Tên"
+        : column === "bi"
+        ? "Năm sinh"
+        : column === "checkedIn"
+        ? "Điểm danh"
+        : ""
+        }}
+      </th>
+      <td mat-cell *matCellDef="let element" [ngClass]="{
+          '!bg-[#34a853]': element['checkedIn'] > 0,
+          '!text-[#FFFFFF]': element['checkedIn'] > 0
+        }">
+        <ng-container *ngIf="column === 'checkedIn'">
+          {{
+          element[column] === 0
+          ? "Vắng"
+          : element[column] === undefined
+          ? "Chưa cập nhật"
+          : (element[column] | date : "dd/MM/yyyy HH:mm:ss")
+          }}
+        </ng-container>
+        <ng-container *ngIf="column !== 'checkedIn'">
+          {{ element[column] }}
+        </ng-container>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</ng-container>
+<ng-container *ngIf="viewPortMode === 'mobile'">
+  <mat-list>
+    <ng-container *ngFor="let item of studentSettings">
+      <mat-list-item class="!py-4" [ngClass]="{
+          '!bg-[#34a853]': item['checkedIn'] > 0,
+          '!text-[#FFFFFF]': item['checkedIn'] > 0
+        }">
+        <span [ngClass]="{
+            '!text-[#FFFFFF]': item['checkedIn'] > 0
+          }" matListItemTitle>{{ item?.na }}</span>
+        <span [ngClass]="{
+            '!text-[#FFFFFF]': item['checkedIn'] > 0
+          }" matListItemLine>{{ item?.id }}</span>
+        <span [ngClass]="{
+            '!text-[#FFFFFF]': item['checkedIn'] > 0
+          }" matListItemLine>{{ item?.bi }}</span>
+        <span [ngClass]="{
+            '!text-[#FFFFFF]': item['checkedIn'] > 0
+          }" matListItemLine>Điểm danh:
+          {{
+          item["checkedIn"] === 0
+          ? "Vắng"
+          : item["checkedIn"] === undefined
+          ? "Chưa cập nhật"
+          : (item["checkedIn"] | date : "dd/MM/yyyy HH:mm:ss")
+          }}</span>
+      </mat-list-item>
+      <mat-divider matListItemLine class="h-0"></mat-divider>
+    </ng-container>
+  </mat-list>
+</ng-container>

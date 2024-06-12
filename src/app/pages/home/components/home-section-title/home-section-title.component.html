@@ -1,0 +1,8 @@
+<div class="border-b border-primary flex justify-between">
+  <div class="text-primary font-semibold text-xl">
+    <ng-content></ng-content>
+  </div>
+  <a *ngIf="viewMore?.path" [routerLink]="viewMore.path" class="cursor-pointer">
+    Xem thêm
+  </a>
+</div>
