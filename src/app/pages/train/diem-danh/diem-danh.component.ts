@@ -3,7 +3,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AdmissionsOfficeService } from 'src/app/shared/service/admissions-office/admissions-office.service';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { ActivatedRoute } from '@angular/router';
-import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -42,7 +41,6 @@ export class DiemDanhComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private admissionsOfficeService: AdmissionsOfficeService,
     private activatedRoute: ActivatedRoute,
-    private datePipe: DatePipe
   ) {
   }
 
@@ -66,10 +64,6 @@ export class DiemDanhComponent implements OnInit {
     });
 
     this.fetchAddmissionData()
-  }
-
-  transformDate(date: string | number | Date) {
-    return this.datePipe.transform(date, 'dd/MM/yyyy HH:mm:ss');
   }
 
   fetchAddmissionData() {
