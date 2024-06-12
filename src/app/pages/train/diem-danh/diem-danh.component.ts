@@ -5,7 +5,6 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { ActivatedRoute } from '@angular/router';
 
 
-
 @Component({
   selector: 'app-diem-danh',
   templateUrl: './diem-danh.component.html',
@@ -67,7 +66,6 @@ export class DiemDanhComponent implements OnInit {
     this.fetchAddmissionData()
   }
 
-
   fetchAddmissionData() {
     this.admissionsOfficeService.fetchAddmissionData().subscribe({
       next: (res: any) => {
@@ -106,7 +104,6 @@ export class DiemDanhComponent implements OnInit {
         .subscribe((res: any) => {
           if (res.status == 200) {
             this.checkInTimeList = res.data.reverse();
-            console.log(this.checkInTimeList);
             if (this.checkInTimeList.length == 1) {
               this.checkInSession['time'] = this.checkInTimeList[0]
             } 
