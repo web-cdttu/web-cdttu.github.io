@@ -2,7 +2,7 @@ import { AfterViewChecked, ChangeDetectorRef, Component, OnInit, ViewChild } fro
 import { MatTableDataSource } from '@angular/material/table';
 import { AdmissionsOfficeService } from 'src/app/shared/service/admissions-office/admissions-office.service';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -42,6 +42,7 @@ export class DiemDanhComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private admissionsOfficeService: AdmissionsOfficeService,
     private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {
   }
 
@@ -61,7 +62,6 @@ export class DiemDanhComponent implements OnInit {
 
       this.activatedRoute.queryParams.subscribe((params: any) => {
         this.checkInSession['time'] = decodeURIComponent(params['gh']);
-        console.log(decodeURIComponent(params['gh']));
     });
 
     this.fetchAddmissionData()
@@ -91,6 +91,7 @@ export class DiemDanhComponent implements OnInit {
             if (this.subjectList.length == 1) {
               this.checkInSession['subject'] = this.subjectList[0]['id']
               this.getCheckInTimeList()
+              this.updateUrl();
             }
           }
         })
@@ -106,9 +107,9 @@ export class DiemDanhComponent implements OnInit {
         .subscribe((res: any) => {
           if (res.status == 200) {
             this.checkInTimeList = res.data.reverse();
-            console.log(this.checkInTimeList);
             if (this.checkInTimeList.length == 1) {
               this.checkInSession['time'] = this.checkInTimeList[0]
+              this.updateUrl();
             } 
             if (this.checkInSession['time']){
               this.getStudentSettings()
@@ -143,6 +144,7 @@ export class DiemDanhComponent implements OnInit {
             this.displayedColumns = ['id', 'na', 'bi', 'checkedIn']
             this.dataSource = new MatTableDataSource(this.studentSettings)
             this.isShowTable = true
+            this.updateUrl();
           }
         })
     } catch (error) {
@@ -151,8 +153,8 @@ export class DiemDanhComponent implements OnInit {
     }
   }
 
-  onChangeSubjectTab(event: any) {    
-    this.getCheckInTimeList()
+  onChangeSubjectTab() {    
+    this.getCheckInTimeList();
   }
 
   onChangeTimeTab(event: any) {    
@@ -164,5 +166,9 @@ export class DiemDanhComponent implements OnInit {
     if (this.viewPortMode === 'desktop') {
       this.dataSource.filter = filterValue?.trim()?.toLowerCase();
     }
+  }
+
+  updateUrl(){
+    this.router.navigate([], { queryParams: { mh: this.checkInSession['subject'], gh: this.checkInSession['time']}});
   }
 }
