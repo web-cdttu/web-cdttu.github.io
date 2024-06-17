@@ -67,7 +67,6 @@ export class DiemDanhComponent implements OnInit {
     this.fetchAddmissionData()
   }
 
-
   fetchAddmissionData() {
     this.admissionsOfficeService.fetchAddmissionData().subscribe({
       next: (res: any) => {

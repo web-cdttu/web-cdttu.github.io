@@ -35,6 +35,7 @@ export class AdmissionsOfficeService {
         .subscribe((res: any) => {
           if (res.status === 200) {
             ref.admissionsOfficeWorbook = res.workbook;
+            console.log(res.workbook);
             observable.next({
               status: 200,
               data: ref.admissionsOfficeWorbook
