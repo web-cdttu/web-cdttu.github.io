@@ -32,7 +32,7 @@ export class GioiThieuChungComponent implements OnInit, AfterViewChecked {
   }
 
   getAllIntroduce() {
-    this.settingsService.getAllIntroduce()
+    this.settingsService.getIntroduceSettings()
       .subscribe((res: any) => {
         this.introduceSettings = res.data?.filter((item: any) => !!item)
         if (res.data?.filter((item: any) => !!item && item?.module == 'introduce')?.length > 0) {

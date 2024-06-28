@@ -1,7 +1,7 @@
 <div>
     <div class="container">
-        <div class="video" *ngIf="video">
-                <iframe width="560" height="315" [src]="video[0] | safe" 
+        <div class="video" *ngIf="video" >
+                <iframe class="w-full" height="350" [src]="video[0] | safe" 
                 title="YouTube video player" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 

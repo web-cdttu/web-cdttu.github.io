@@ -1,5 +1,5 @@
 import { Injectable, isDevMode } from '@angular/core';
-import { Observable, observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { read, utils } from 'xlsx';
 import { DatePipe } from '@angular/common';
 import { SheetService } from '../sheet/sheet.service';
@@ -29,6 +29,7 @@ export class AdmissionsOfficeService {
   }
 
   fetchAddmissionData(): Observable<any> {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const ref: Mutable<this> = this;
     return new Observable((observable) => {
       this.sheetService.fetchSheet(this.sheetId)
