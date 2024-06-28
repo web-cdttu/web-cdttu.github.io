@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IntroduceComponent } from './introduce.component';
 import { DetailsComponent } from './details/details.component';
+import { GioiThieuChungComponent } from './gioi-thieu-chung/gioi-thieu-chung.component';
 
 const routes: Routes = [
   {
@@ -9,9 +10,14 @@ const routes: Routes = [
     component: IntroduceComponent,
     children: [
       {
+        path: '',
+        component: GioiThieuChungComponent
+      },
+      {
         path: ':type',
         component: DetailsComponent
-      }
+      },
+
     ]
   }
 ];

@@ -1,6 +1,6 @@
 <mat-form-field class="w-full">
   <mat-label>Chọn môn học</mat-label>
-  <mat-select (selectionChange)="onChangeSubjectTab($event)" [(ngModel)]="checkInSession['subject']">
+  <mat-select (selectionChange)="onChangeSubjectTab()" [(ngModel)]="checkInSession['subject']">
     <mat-option *ngFor="let item of subjectList" [value]="item.id">{{ item.na }}</mat-option>
   </mat-select>
 </mat-form-field>

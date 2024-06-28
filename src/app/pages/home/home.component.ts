@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   }
 
   getAllSettings() {
-    this.settingsService.getAllSettings()
+    this.settingsService.getHomeSettings()
       .subscribe((res: any) => {
         this.homeSettingsData = res.data?.filter((item: any) => !!item)
         if (res.data?.filter((item: any) => !!item && item?.module == 'topSlideShow')?.length > 0) {
