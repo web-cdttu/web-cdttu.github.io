@@ -8,7 +8,7 @@ import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular
   templateUrl: './gioi-thieu-chung.component.html',
   styleUrl: './gioi-thieu-chung.component.scss'
 })
-export class GioiThieuChungComponent implements OnInit, AfterViewChecked {
+export class GioiThieuChungComponent implements OnInit {
   introduceSettings =<any>[];
   video: any;
 
@@ -21,32 +21,14 @@ export class GioiThieuChungComponent implements OnInit, AfterViewChecked {
 
    }
   ngOnInit(): void {
-    this.ngAfterViewChecked();
-  }
-
-  ngAfterViewChecked(): void {
-    if (!this.settingsService.isActivesettings || !this.introduceSettings || this.introduceSettings?.length == 0) {
-      this.getAllIntroduce()
-    }
-    this.cd.detectChanges()
+    this.getAllIntroduce()
   }
 
   getAllIntroduce() {
-    this.settingsService.getIntroduceSettings()
-      .subscribe((res: any) => {
-        this.introduceSettings = res.data?.filter((item: any) => !!item)
-        if (res.data?.filter((item: any) => !!item && item?.module == 'introduce')?.length > 0) {
-          this.video = res.data?.map((item: any) => {
-            let video = ''
-            if (item?.type == 'youtube') {
-              video = `https://www.youtube.com/embed/${item?.data}`
-            }
-            return video;
-            
-          })?.concat(this.video)
-          console.log(this.video);
-        }
-      })
+    this.settingsService.fetchsettingsData().subscribe((res: any) => {
+      if(res.status == 200) {
+        this.video = `https://www.youtube.com/embed/${res.introduce[0].data}`
+      }
+    })
   }
-
 }

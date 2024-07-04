@@ -8,7 +8,6 @@ type Mutable<T> = { -readonly [P in keyof T]: T[P] }
   providedIn: 'root'
 })
 export class SettingsService {
-
   readonly EXCEL_TYPE = 'application/vnd.openxmlformatsofficedocument.spreadsheetml.sheet;charset=UTF-8';
   readonly EXCEL_EXTENSION = '.xlsx';
   // readonly sheetUrl = `https://docs.google.com/spreadsheets/d/e/{id}/pub?output=xlsx`
@@ -21,7 +20,6 @@ export class SettingsService {
   readonly introduceHeader = <any>{key: 'key', module:'module', data: 'data', type: 'type'};
 
   isActivesettings = false;
-
   constructor(
     private sheetService: SheetService
   ) {}
@@ -30,51 +28,23 @@ export class SettingsService {
     const ref: Mutable<this> = this;
     return new Observable((observable) =>{
       this.sheetService.fetchSheet(this.sheetId).subscribe((res: any) => {
+        const response = <any>{}
         if(res.status == 200) {
+          response.status = 200
           ref.settingsWorbook = res.workbook;
-          console.log(res.workbook);
-          observable.next({
-            status: 200,
-            data: ref.settingsWorbook
-          })
+          response.data = ref.settingsWorbook
+          const homeWorbook = res.workbook.Sheets['home'];
+          const introduceWorbook = res.workbook.Sheets['introduce'];
+          this.sheetService.decodeRawSheetData(homeWorbook, 2).subscribe((reshome: any) => {
+            response.home = reshome;
+            this.sheetService.decodeRawSheetData(introduceWorbook, 2).subscribe((resintroduce: any) => {
+              response.introduce = resintroduce;
+              observable.next(response)
+              observable.complete();
+            })
+          })           
         }
       })
     });
-  }
-
-  getHomeSettings(): Observable<any> {
-      return new Observable((observable) => {
-        if(this.settingsWorbook) {
-          // eslint-disable-next-line @typescript-eslint/no-this-alias
-          const sheet = this.settingsWorbook.Sheets['home']
-          this.sheetService.decodeRawSheetData(sheet, 2)
-            .subscribe((res: any) => {
-              observable.next({
-                status: 200,
-                data: res
-              })
-            })
-        }
-        else {
-          this.fetchsettingsData().subscribe();
-        }
-      });
-  }
-
-  getIntroduceSettings(): Observable<any> {
-    return new Observable((observable) => {
-      if (this.settingsWorbook) {
-        const sheet = this.settingsWorbook.Sheets['introduce']
-        this.sheetService.decodeRawSheetData(sheet, 2)
-          .subscribe((res: any) => {
-            observable.next({
-              status: 200,
-              data: res
-            })
-          })
-      } else {
-            this.fetchsettingsData().subscribe();
-      }
-    })
   }
 }
