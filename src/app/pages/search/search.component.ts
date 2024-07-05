@@ -101,26 +101,26 @@ export class SearchComponent implements OnInit, AfterViewChecked {
     })
     this.newsList = newsList.splice(newsList?.length > 7 ? 7 : newsList.length / 2, 7)
     try {
-      this.newsService.getAllNews()
-        .subscribe((res: any) => {
-          if (res.code === 200) {
-            const newsList = res.data.sort((a: any, b: any) => a.date > b.date ? -1 : 1)
-              .map((item: any) => {
-                return {
-                  id: item?.id,
-                  title: item?.title,
-                  slug: item?.slug,
-                  date: item?.date,
-                  path: `/tin-tuc/${item.slug}`,
-                  image: item.thumbnail
-                }
-              })
-            this.newsList = newsList
-            if (this.searchText?.length > 0) {
-              this.searchNews()
-            }
-          }
-        })
+      // this.newsService.getAllNews()
+      //   .subscribe((res: any) => {
+      //     if (res.code === 200) {
+      //       const newsList = res.data.sort((a: any, b: any) => a.date > b.date ? -1 : 1)
+      //         .map((item: any) => {
+      //           return {
+      //             id: item?.id,
+      //             title: item?.title,
+      //             slug: item?.slug,
+      //             date: item?.date,
+      //             path: `/tin-tuc/${item.slug}`,
+      //             image: item.thumbnail
+      //           }
+      //         })
+      //       this.newsList = newsList
+      //       if (this.searchText?.length > 0) {
+      //         this.searchNews()
+      //       }
+      //     }
+      //   })
     } catch (e) {
       console.log(e);
     }

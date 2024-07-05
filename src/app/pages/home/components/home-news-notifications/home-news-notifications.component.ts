@@ -46,9 +46,11 @@ export class HomeNewsNotificationsComponent implements OnInit, AfterViewChecked 
     this.newsList = newsList.splice(newsList?.length > 7 ? 7 : newsList.length / 2, 7)
     this.newsSlide = newsList.splice(0, 7)
     try {
-      this.newsService.getAllNews()
+      this.newsService.fetchAllNews()
         .subscribe((res: any) => {
-          if (res.code === 200) {
+          console.log(res)
+          if (res.status === 200) {
+            console.log(res.data);
             const newsList = res.data.sort((a: any, b: any) => a.date > b.date ? -1 : 1)
               .map((item: any) => {
                 return {
@@ -56,16 +58,17 @@ export class HomeNewsNotificationsComponent implements OnInit, AfterViewChecked 
                   title: item?.title,
                   date: item?.date,
                   path: `/tin-tuc/${item.slug}`,
-                  image: item.thumbnail
+                  image: `https://lh3.googleusercontent.com/fife/${item?.thumbnail}`
                 }
               })
-              if (newsList.length > 7) {
-                this.newsSlide = newsList.splice(newsList?.length > 7 ? 7 : newsList.length / 2, 7)
-                this.newsList = newsList.splice(0, 7)
-              } else {
-                this.newsSlide = newsList
-                this.newsList = newsList
-              }
+            if (newsList?.length > 7) {
+              this.newsList = newsList.splice(newsList?.length > 7 ? 7 : newsList.length / 2, 7)
+              this.newsSlide = newsList.splice(0, 7)
+            } else {
+              this.newsList = newsList
+              this.newsSlide = newsList
+            }
+            console.log(newsList)
             this.offsetHeight = this.newListContainer?.nativeElement?.offsetHeight
           }
         })
