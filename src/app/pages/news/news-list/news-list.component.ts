@@ -6,7 +6,7 @@ import { NewsService } from 'src/app/shared/service/news/news.service';
   templateUrl: './news-list.component.html',
   styleUrls: ['./news-list.component.scss']
 })
-export class NewsListComponent implements OnInit, AfterViewChecked {
+export class NewsListComponent implements OnInit {
 
   newsList = <any>[];
   breadcrumb = <any>[];
@@ -33,24 +33,16 @@ export class NewsListComponent implements OnInit, AfterViewChecked {
     this.getNewsList()
   }
 
-  ngAfterViewChecked(): void {
-    this.cd.detectChanges()
-    setTimeout(() => {
-      if (this.newsService.isActiveNews && !this.newsList[0]?.title) {
-        this.getNewsList()
-      }
-    })
-  }
-
   getNewsList() {
     const newsList = Array.from(Array(14), (item, index) => {
       return null
     })
     this.newsList = newsList.splice(newsList?.length > 7 ? 7 : newsList.length / 2, 7)
     try {
-      this.newsService.getAllNews()
+      
+      this.newsService.fetchAllNews()
         .subscribe((res: any) => {
-          if (res.code === 200) {
+          if (res.status === 200) {
             console.log(res.data);
             const newsList = res.data.sort((a: any, b: any) => a.date > b.date ? -1 : 1)
               .map((item: any) => {
@@ -60,7 +52,7 @@ export class NewsListComponent implements OnInit, AfterViewChecked {
                   slug: item?.slug,
                   date: item?.date,
                   path: `/tin-tuc/${item.slug}`,
-                  image: item.thumbnail
+                  image: `https://lh3.googleusercontent.com/fife/${item?.thumbnail}`
                 }
               })
             this.newsList = newsList

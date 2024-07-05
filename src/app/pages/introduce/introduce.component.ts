@@ -7,5 +7,5 @@ import { MENU } from 'src/app/shared/constant/menu.constant';
   styleUrls: ['./introduce.component.scss']
 })
 export class IntroduceComponent {
-  menu = MENU.find((item: any) => item.path == '/gioi-thieu')?.children
+  menu = MENU.find((item: any) => item.path == '/gioi-thieu')?.children?.filter((item: any) => item.path != 'gioi-thieu-chung')
 }

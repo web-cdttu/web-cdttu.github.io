@@ -8,6 +8,10 @@ export const MENU = <any>[
     label: 'GIỚI THIỆU',
     children: [
       {
+        path: 'gioi-thieu-chung',
+        label: 'GIỚI THIỆU CHUNG',
+      },
+      {
         path: 'luoc-su',
         label: 'LƯỢC SỬ',
       },

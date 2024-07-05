@@ -11,6 +11,8 @@ import { CacPhongBanChucNangComponent } from './cac-phong-ban-chuc-nang/cac-phon
 import { VienTruongComponent } from './vien-truong/vien-truong.component';
 import { GiangVienComponent } from './giang-vien/giang-vien.component';
 import { QuyCheComponent } from './quy-che/quy-che.component';
+import { GioiThieuChungComponent } from './gioi-thieu-chung/gioi-thieu-chung.component';
+import { SafePipe } from './pipe/safe.pipe';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { QuyCheComponent } from './quy-che/quy-che.component';
     CacPhongBanChucNangComponent,
     VienTruongComponent,
     GiangVienComponent,
-    QuyCheComponent
+    QuyCheComponent,
+    GioiThieuChungComponent,
+    SafePipe
   ],
   imports: [
     CommonModule,

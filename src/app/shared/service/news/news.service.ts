@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { Observable } from 'rxjs';
 import { read, utils } from 'xlsx';
+import { SheetService } from '../sheet/sheet.service';
 
 type Mutable<T> = { -readonly [P in keyof T]: T[P] }
 
@@ -8,106 +9,54 @@ type Mutable<T> = { -readonly [P in keyof T]: T[P] }
   providedIn: 'root'
 })
 export class NewsService {
+  readonly EXCEL_TYPE = 'application/vnd.openxmlformatsofficedocument.spreadsheetml.sheet;charset=UTF-8';
+  readonly EXCEL_EXTENSION = '.xlsx';
+  readonly sheetId = isDevMode() ? `2PACX-1vTxoXr-fQ2nVBCXMzr6DghyJhIB4vyV964JFPgIJRBlp0sB_6DrVi62DkspDqjewg` : `2PACX-1vTX3a-Z8GG0hWweLX3S36jrC_GQ0Uzhtz_Es1LulCL1jjdCFe878x18iVuMJLtYOg`
+  readonly newWorbookName = 'news'
   readonly newsWorbook: any;
-  readonly sheetUrl = `https://docs.google.com/spreadsheets/d/e/{id}/pub?output=xlsx`
-  readonly sheetId = `2PACX-1vTX3a-Z8GG0hWweLX3S36jrC_GQ0Uzhtz_Es1LulCL1jjdCFe878x18iVuMJLtYOg`
   readonly newsSheet = 'news'
+  readonly newsHeader = <any>{ id: 'Mã bài đăng', data: 'Ngày đăng', title: 'Tiêu đề', slug: 'Đường dẫn', content: 'Nội dung', type: 'Loại', googleDocPublish: 'Nội dung từ Google Doc', thumbnail: 'Thumbnail', thumbnailType: '' }
   readonly newsData = <any>[]
   isActiveNews = false;
-  constructor() {
-    this.fetchAllNews()
+  constructor(
+    private sheetService: SheetService
+  ) {
   }
 
-  fetchAllNews() {
-    if (!this.newsWorbook) {
+  fetchAllNews(): Observable<any> {
+    return new Observable((observable) => {
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       const ref: Mutable<this> = this;
-      const sheetUrl = this.sheetUrl.replace('{id}', this.sheetId)
-      fetch(sheetUrl)
-        .then((res: any) => res.arrayBuffer())
-        .then((req => {
-          const workbook = read(req)
-          ref.newsWorbook = workbook
-          const news = this.newsWorbook.Sheets[this.newsSheet]
-          const data = this.decodeRawSheetData(news).filter((item: any) => !!item.id)
+      const response = <any>{}
+      if (!this.newsWorbook) {
+        this.sheetService.fetchSheet(this.sheetId).subscribe((res: any) => {
+          if (res.status === 200) {
+            response.status = 200
+            ref.newsWorbook = res.workbook
+            const news = ref.newsWorbook.Sheets[this.newsSheet]
+            this.sheetService.decodeRawSheetData(news, 2).subscribe((resnews: any) => {
+              const data = resnews.filter((item: any) => !!item.id)
+              data?.forEach((item: any) => {
+                item.date = new Date(item.date).getTime()
+              })
+              response.data = data
+              observable.next(response)
+              observable.complete()
+            })
+          }
+        })
+      } else {
+        const news = ref.newsWorbook.Sheets[this.newsSheet]
+        this.sheetService.decodeRawSheetData(news, 2).subscribe((resnews: any) => {
+          const data = resnews.filter((item: any) => !!item.id)
           data?.forEach((item: any) => {
             item.date = new Date(item.date).getTime()
           })
-          ref.newsData = data
-          this.isActiveNews = true
-        }))
-    }
-  }
-
-  private decodeRawSheetData(data: any, header?: any) {
-    const column = [...new Set(Object.keys(data).map((col: any) => {
-      const returnData = data[col.replace(/\d+((.|,)\d+)?/, '2')]
-      if (returnData) {
-        if (!parseFloat(returnData['v'])) {
-          return returnData['v']
-        } else {
-          return new Date(returnData['w']).getTime()
-        }
-      }
-    }))]?.filter((col: any) => !!col)
-    const responseData = utils.sheet_to_json<any>(data, {
-      header: header || column,
-      raw: false
-    })?.slice(2);
-    return responseData
-  }
-
-  getAllNews(request?: any): Observable<any> {
-    if (this.newsWorbook) {
-      return new Observable((observable) => {
-        const querySheet = this.newsSheet
-        const news = this.newsWorbook.Sheets[querySheet]
-        const data = this.decodeRawSheetData(news).filter((item: any) => !!item.id)
-        data?.forEach((item: any) => {
-          if (item.date) {
-            item.date = new Date(item.date).getTime()
-          }
-          if (item?.thumbnailType == 'googleDrive') {
-            item.thumbnail = `https://lh3.googleusercontent.com/fife/${item.thumbnail}`
-          }
+          response.data = data
+          observable.next(response)
+          observable.complete()
         })
-        const response = {
-          code: data?.length > 0 ? 200 : 404,
-          data: data
-        }
-        observable.next(response)
-        observable.complete()
-      })
-    }
-    return new Observable((observable) => {
-      const response = {
-        code: 404
       }
-      observable.next(response)
-      observable.complete()
-    })
-  }
-
-  getNewsBySlug(slug: any): Observable<any> {
-    console.log(this.newsData);
-
-    if (this.newsWorbook) {
-      return new Observable((observable) => {
-        const data = this.newsData.find((item: any) => item.slug == slug)
-        const response = {
-          code: data ? 200 : 404,
-          data: data
-        }
-        observable.next(response)
-        observable.complete()
-      })
-    }
-    return new Observable((observable) => {
-      const response = {
-        code: 404
-      }
-      observable.next(response)
-      observable.complete()
     })
   }
 }

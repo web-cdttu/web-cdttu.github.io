@@ -3,11 +3,12 @@
     <div class="flex flex-col lg:flex-row">
       <div class="w-full lg:w-80 lg:min-w-[20rem] h-fit static lg:sticky top-[42px]">
         <div class="w-full h-fit bg-[#f3f4e3] p-5 rounded-b">
-          <div class="text-xl text-center font-semibold relative">
-            <img src="/assets/images/brush-marks.png" alt="brush-marks">
-            <span class="absolute top-0 left-0 right-0 bottom-0 text-[#FFFFFF] flex items-center justify-center">GIỚI
-              THIỆU</span>
-          </div>
+            <div class="text-xl text-center font-semibold relative cursor-pointer" 
+              [routerLink]="'/gioi-thieu/gioi-thieu-chung'">
+              <img src="/assets/images/brush-marks.png" alt="brush-marks">
+              <span class="absolute top-0 left-0 right-0 bottom-0 text-[#FFFFFF] flex items-center justify-center">GIỚI
+                THIỆU</span>
+            </div>
           <div *ngFor="let item of menu" class="w-full h-auto relative cursor-pointer menu-item"
             [routerLink]="'/gioi-thieu/' + item?.path" [routerLinkActive]="'active'">
             <div class="py-4 flex items-center p-7">

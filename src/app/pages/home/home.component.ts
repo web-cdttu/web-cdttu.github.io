@@ -7,7 +7,7 @@ import { SettingsService } from 'src/app/shared/service/settings/settings.servic
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewChecked {
+export class HomeComponent implements OnInit {
   bannerData = <any>[]
   homeSettingsData = <any>[]
   isActiveNews = false;
@@ -35,22 +35,15 @@ export class HomeComponent implements OnInit, AfterViewChecked {
         image: 'https://lh3.googleusercontent.com/fife/ALs6j_HxagLW1P2shRf2iiwMAY3-QW0RQrFANGyrKkuSSSdFTU_h1NoFIvIDcH2D1lzeiDU5-wnK8-PqpzFlsuuQVYgtlYyOQPJ4U7LP7m9JfB2EFbV4Zlf1yoxiXQv13RTrg6jClGh13jGmSWRHKev8TdlVliwt8XKW9MoUZWo2_qwNtUqmQOoqvydt9-qnqJU5lieUjk6vpVILURn27tkLvKRFt5jTfCt0xZi-gTQBw9thT-xf4ftsG2ueRWWKKTHHVTVDuFujEQJ6eKWHRVr3Nf74AEm0ABbhsNG8yBxTdO_qkM9-WDkSrJ44gZVlNV07stD0wKXwgyyv5T8JYKGENz1NjlfmvlVst-PN1XyLYRCWBrpjZOnUEs_KWtMdGedlkTKlCRiCs_yakSPcMAzPW-N9KmOo8tLA37uwOHysxLtOVl29MEhB43HrF2xeley1NiF43lPRdELm7EjPjzc-_7ARyfTVGZX2tZHmZ7un2mPjImq3z9YvXxboOQ9_URBSdo9bIRowcUeTXEU3udPVuH6Vla5AYHrlEoAAYwactMHp-13JhTf0OoZ2zykI1ggXZoYWXAtk_e84VlRJ71mc-wIeXB_6khNvPaikPOxxUnfWB0rqzdBvNo2ZX7DYrG-NWS3YQH5Ju--jljhvDQ-_tJWZqQbTiQqxsQp5UJIxDI-3VxJGbS3wPcTAtloKxhoLNIXOOavEwgAlI1cCSSj8LYx4RZaEP8-QeeiKzc72iuMcyUaLNXspSyvf3X58bFEXBnAq9W6erkA5FpvgBfKtMyPF2j8iYw0yOA-mntzMnCBKJ6Uq5WhniCFsPZ6wV975vfE5hCPCoD5PT166bk5tNEj4lg016a-r9Lfi-ag17g4-CN7F2IeqGh8cyHWuX7H1FxI1yhaEmtz2353R2eUF27w4jHiWBztlYBtO3_cw3H10cGP-OamREahlawb3im7Zjh1Wpb9TuIzmhe9vpI87qgSJjs31Vwe8bp4LycWebppEb3yZC4Ad9jNqxQGB8WniM9L0aMlbz89TpTWt7xZrE6_klCuLFStBHvRzCLrzkSp1Nfl_uL3IrEv7JeL36iias-nVP_xjXcJkQ89wL2VJiVK5CgVW-KL5hJyx9qGfJiI0Oon3NIIhq2_IawvS-XNPwZk-EwOfjoffmD8ZPnu4eFxyn1onR-qMyiO8uVPODnFhy-t2IWCyAyR2mnyEBrqahmei0OgsqdZtL1jZ9eOjFeVKZdChcJN3DDzK8G98bWo0mTms-pCSkjcaga4qw_LQROrkKVWgbwCueS-9X05B-ygl6Dz8QdxwQbnCp2FFdjpfZY8UQm-THK4EnUWxlaRSqvECgm_1MTQzb7E_RZmpMnH_sbsiML0vTk7lEn4H-XqVhhb9uVp58ss4YDoVECo4MhTHK0gqeWajQFR34uoiMm3i380ngSmPwzkARpIBYGGcxB2QbMh76S41tGNjwd0ae0XEx1_VEFJkd_ob9c3MysRxQO5UUilXH4_XKYAyf7PLU4wuIc4yFKhwyX0iCJdY4sBYE1zmrQIkdPCi1f-q7Rg0efx10P1qfVU1jBUPdol8wEoE6nlOSW-vttNh4NhWIcL4OmpeDpSByCU'
       }
     ]
-  }
-
-  ngAfterViewChecked(): void {
-    this.isActiveNews = this.newsService.isActiveNews
-    if (!this.settingsService.isActivesettings || !this.homeSettingsData || this.homeSettingsData?.length == 0) {
-      this.getAllSettings()
-    }
-    this.cd.detectChanges()
+    this.getAllSettings();
   }
 
   getAllSettings() {
-    this.settingsService.getAllSettings()
+    this.settingsService.fetchsettingsData()
       .subscribe((res: any) => {
-        this.homeSettingsData = res.data?.filter((item: any) => !!item)
-        if (res.data?.filter((item: any) => !!item && item?.module == 'topSlideShow')?.length > 0) {
-          this.bannerData = res.data?.map((item: any) => {
+        this.homeSettingsData = res.home?.filter((item: any) => !!item)
+        if (res.home?.filter((item: any) => !!item && item?.module == 'topSlideShow')?.length > 0) {
+          this.bannerData = res.home?.map((item: any) => {
             let image = ''
             if (item?.type == 'googleDrive') {
               image = `https://lh3.googleusercontent.com/fife/${item?.data}`
@@ -59,7 +52,6 @@ export class HomeComponent implements OnInit, AfterViewChecked {
               image: image
             }
           })?.concat(this.bannerData)
-          console.log(this.homeSettingsData);
         }
       })
   }

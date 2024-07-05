@@ -1,4 +1,5 @@
 <app-breadcrumb [breadcrumb]="breadcrumb" [align]="'end'"></app-breadcrumb>
+<app-gioi-thieu-chung *ngIf="type === 'gioi-thieu-chung'"></app-gioi-thieu-chung>
 <app-luoc-su *ngIf="type === 'luoc-su'"></app-luoc-su>
 <app-chuc-nang-nhiem-vu
   *ngIf="type === 'chuc-nang-nhiem-vu'"
@@ -9,3 +10,4 @@
 <app-vien-truong *ngIf="type === 'vien-truong'"></app-vien-truong>
 <app-giang-vien *ngIf="type === 'giang-vien'"></app-giang-vien>
 <app-quy-che *ngIf="type === 'quy-che'"></app-quy-che>
+
